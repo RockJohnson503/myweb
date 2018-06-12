@@ -1,0 +1,4 @@
+播放记录管理,admin_playhistory.php?ac=list
+注册用户管理,admin_members.php?ac=list
+管理影片,admin_video.php?action=else
+重复影片检索,admin_datarelate.php?action=repeat

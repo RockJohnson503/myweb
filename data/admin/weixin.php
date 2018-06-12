@@ -1,0 +1,1 @@
+<?php define("isopen", "n"); define("token", "k836867547"); define("title", "顽石TenStone"); define("url", "http://www.wanshitv.cn"); define("ckmov_url", "http://www.wanshitv.cn/weixin/"); define("follow", ""); define("noc", ""); define("dpic", ""); define("help", ""); define("topage", "d"); define("sql_num", "5");  ?>

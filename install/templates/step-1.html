@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>安装程序 - 多米影视管理</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="top">
+  <div class="top-logo">
+    <h1>多米影视管理系统<?php echo $verMsg; ?> 安装程序</h1>
+  </div>
+  <div class="top-link">
+    <ul>
+      <li>DuomiCms<?php echo $verMsg; ?></li>
+    </ul>
+  </div>
+  <div class="top-version">
+  <a href="http://www.duomicms.net" target="_blank">官方网站</a>
+     <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=4ef2bcd2fc069c2954f0cde8d892c0be46e9efc864a0f413c2dd0e79176b784d">官方交流QQ群：495417896</a>
+  </div>
+</div>
+<div class="main">
+  <div class="pleft">
+    <dl class="setpbox t1">
+      <dt>安装步骤</dt>
+      <dd>
+        <ul>
+          <li class="now">许可协议</li>
+          <li>环境检测</li>
+          <li>参数配置</li>
+          <li>程序安装</li>
+          <li>安装完成</li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+  <div class="pright">
+    <div class="pr-title">
+      <h3>阅读许可协议</h3>
+    </div>
+    <div class="pr-agreement">
+      <p> 在您使用本软件前，请仔细阅读以下信息。除本协议中明确赋予用户的权利、其它权利均保留。如果您不同意以下软件使用许可协议，您不应注册/下载本软件，请停止使用，并将本软件删除。</p>
+      <p> DuomiCms为萨夫软件（SAMFEA SOFT）旗下产品，用户可以非商业性地下载、安装、复制和散发本软件产品。本软件不得用于从事违反中国人民共和国相关法律所禁止的活动，DuomiCms对于用户擅自使用本软件从事违法活动不承担任何责任（包括但不限于刑事责任、行政责任、民事责任）</p>
+      <p> 鉴于用户计算机软硬件环境的差异性和复杂性，本软件所提供的各项功能并不能保证在任何情况下都能正常执行或达到用户所期望的结果。用户使用本软件所产生的一切后果，DuomiCms不承担任何责任。 </p>
+      <p> DuomiCms保证本软件不含有任何旨在破坏用户计算机的数据和获取用户隐私信息的恶意代码，不含有任何跟踪、监视用户计算机和或操作行为的功能代码，不会监控用户网上、网下的行为或泄漏用户隐私。 </p>
+      <p> 本软件为免费产品。DuomiCms为本软件产品提供Email/Web等形式的产品支持。电子邮件：admin@duomicms.net，欢迎垂询。 </p>
+      <p> 本软件经过详细的测试，但不能保证与所有的软硬件系统完全兼容。如果出现不兼容的情况，用户可通过电子邮件将情况报告DuomiCms，获得技术支持。如果无法解决兼容性问题，用户可以卸载本软件。</p>
+      <p> 由于本软件产品可以通过网络等途径下载、传播，对于从非DuomiCms指定站点下载的本软件产品以及从非DuomiCms发行的介质上获得的本软件产品，DuomiCms无法保证该软件是否感染计算机病毒、是否隐藏有伪装的特洛伊木马程序或者黑客软件，不承担由此引起的直接和间接损害责任。 </p>
+      <p> 如果用户在安装提示框出现时点击&quot;我已经阅读并同意此协议&quot;，即表明用户自愿选择安装本软件，并接受本协议所有条款。如果用户不接受本协议，不愿安装本软件，请关闭页面并删除软件。
+      </p>
+    </div>
+    <div class="btn-box">
+      <input name="readpact" type="checkbox" id="readpact" value="" />
+      <label for="readpact"><strong class="fc-690 fs-14">我已经阅读并同意此协议</strong></label>
+      <input type="button" class="btn-next" value="下一步" onclick="document.getElementById('readpact').checked ?window.location.href='index.php?step=2' : alert('您必须同意软件许可协议才能安装！');" />
+    </div>
+  </div>
+</div>
+<div class="footer clearfix"> Copyright © 2015-2016 多米(DuomiCms)影视管理系统 版权所有 Power By <a href="http://www.duomicms.net" target="_blank">DuomiCms</a> in <a href="http://www.samfea.com" target="_blank">SAMFEA</a>. </div>
+</body>
+</html>
