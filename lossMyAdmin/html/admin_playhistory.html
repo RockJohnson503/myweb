@@ -39,7 +39,7 @@
                 echo '<td class="td_border" height="30" >'.$row['u_sys'].'</td>';
                 echo '<td class="td_border" height="30" >'.date('Y-m-d H:i:s',$row['p_time']).'</td>';
                 echo '<td class="td_border" height="30" ><a href="?ac=list&vid='.$row['v_id'].'">'.$row['p_info'].'</a></td>';
-                echo '<td class="td_border" height="30" ><a href="?ac=del&time='.$row['p_time'].'" onclick="if(confirm(\'确定删除？操作不可恢复\')){return true;}else{return false;}">删除</a></td>';
+                echo '<td class="td_border" height="30" ><a href="?ac=del&hid='.$row['h_id'].'" onclick="if(confirm(\'确定删除？操作不可恢复\')){return true;}else{return false;}">删除</a></td>';
                 echo '</tr>';
             }
             unset($rs);

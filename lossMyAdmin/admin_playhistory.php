@@ -60,9 +60,10 @@ if($ac=='list')
 		$srow[] = $row;
 	}
 }else if($ac == 'del'){
-    $sql = "delete from wanshi_play_history where p_time=$time";
+    $turl= $_SERVER['HTTP_REFERER'];
+    $sql = "delete from wanshi_play_history where h_id=$hid";
     $dsql->ExecuteNoneQuery($sql);
-    ShowMsg("删除成功","-1");
+    ShowMsg("删除成功", $turl);
     exit();
 }
 include(duomi_ADMIN.'/html/admin_playhistory.html');
