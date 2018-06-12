@@ -15,7 +15,7 @@ if(empty($ac))
 
 if($ac=='list')
 {
-    if(empty($uname))
+    if($uname == '')
 	{
 		$wheresql = "";
 	}else
@@ -23,6 +23,14 @@ if($ac=='list')
 		$wheresql = "where";
         $u_name = str_replace('*','%',$uname);
         $wheresql .= " u_name like '$u_name'";
+	}
+	$wheresql = rtrim($wheresql,'and');
+
+    if($vid != "")
+	{
+		$wheresql = "where";
+        $v_id = str_replace('*','%',$vid);
+        $wheresql .= " v_id like '$v_id'";
 	}
 	$wheresql = rtrim($wheresql,'and');
 

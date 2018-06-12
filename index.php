@@ -26,16 +26,6 @@ if($cfg_runmode=='0')
 }
 checkIP();
 
-echo $mac.'-'.$_SESSION['cfg_ac'];
-# 获取来源
-if(empty($mac) and empty($_SESSION['cfg_ac'])){
-echo 1;
-}else{
-echo 2;
-	$_SESSION['cfg_ac'] = $mac;
-}
-echo $mac.'-'.$_SESSION['cfg_ac'];
-
 echoIndex();
 function echoIndex()
 {

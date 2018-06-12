@@ -179,6 +179,12 @@ if($cronnextrun && $cronnextrun <= $timestamp) {
 	}
 }
 
+# 获取来源
+session_start();
+if(!empty($mac)){
+    $_SESSION['cfg_ac'] = $mac;
+}
+
 function get_system(){
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (stripos($user_agent, "iPhone")!==false or stripos($user_agent, "Mac OS X")!==false) {

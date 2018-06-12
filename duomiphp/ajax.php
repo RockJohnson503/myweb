@@ -50,31 +50,30 @@ switch ($action) {
 		echo member();
 	break;
         case "playhistory":
-                echo playhistory(isset($video) ? trim($video) : '', isset($url) ? trim($url) : '');
+                echo playhistory(isset($video) ? trim($video) : '',
+                    isset($url) ? trim($url) : '',
+                    isset($v_id) ? trim($v_id) : '');
         break;
 }
 
-function playhistory($video, $url){
-       @session_start();
-       global $dsql, $gac;
+function playhistory($video, $url, $v_id){
+       global $dsql;
+       $gac = $_SESSION["cfg_ac"];
        $user_name = $_SESSION["duomi_user_name"];
        if($user_name == ""){
            $user_name = GetIP();
        }
        $time = time();
        $system = get_system();
-echo $gac.'-';
        if($gac == 'wx'){
-echo $system.'-';
-              $system = $system."-微信";
+            $system = $system."-微信";
        }
-echo $system.'-';
        $sql = "select 2 from wanshi_play_history where u_name='$user_name' and p_url = '$url'";
        $res = $dsql->ExecuteNoneQuery2($sql);
        if($res > 0){
            $sql = "update wanshi_play_history set p_time='$time', u_sys='$system' where u_name='$user_name' and p_url='$url'";
        }else{
-           $sql="insert into wanshi_play_history(u_name, u_sys, p_info, p_time, p_url) values('$user_name', '$system', '$video', $time, '$url')";
+           $sql = "insert into wanshi_play_history(u_name, u_sys, p_info, p_time, p_url, v_id) values('$user_name', '$system', '$video', $time, '$url', '$v_id')";
        }
        $res = $dsql->ExecuteNoneQuery2($sql);
        if($res > 0){

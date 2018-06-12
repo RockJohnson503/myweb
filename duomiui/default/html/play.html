@@ -60,13 +60,14 @@
     <script>
         var url = window.location.href;
         url = url.substring(url.indexOf("/video"), url.length);
+
+        var type = "{playpage:typename}";
+        p_info = "{playpage:name} {playpage:part}";
+        if(type.indexOf("电影") >= 0){
+            p_info = "{playpage:name}";
+        }
         setTimeout(function () {
-            var type = "{playpage:typename}";
-            p_info = "{playpage:name} {playpage:part}";
-            if(type == "电影"){
-                p_info = "{playpage:name}";
-            }
-            setPlayHistory(p_info, url);
+            setPlayHistory(p_info, url, '{playpage:id}');
             getVideoHit('{playpage:id}');
         }, 60000);
     </script>

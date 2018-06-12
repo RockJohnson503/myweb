@@ -229,9 +229,9 @@ function getVideoHit(vid){
 	);				
 }
 
-function setPlayHistory(video, url){
+function setPlayHistory(video, url, v_id){
 	$.get(
-		"/" + sitePath + "duomiphp/ajax.php?action=playhistory&video="+video+"&url="+url,
+		"/" + sitePath + "duomiphp/ajax.php?action=playhistory&video="+video+"&url="+url+"&v_id="+v_id,
 		function(data){}
 	);
 }
