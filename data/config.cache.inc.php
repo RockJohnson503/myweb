@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 $cfg_website = '1';
 $cfg_webname = '顽石视频';
 $cfg_webtitle = '免费视频分享网站';
-$cfg_basehost = 'http://www.wanshitv.cn';
+$cfg_basehost = '';
 $cfg_cmspath = '';
 $cfg_logo = 'duomiui/default/images/538db374906df88f.png';
 $cfg_ewm = 'duomiui/default/images/weixin.jpg';
@@ -79,7 +79,7 @@ $cfg_isfromsort = '0';
 $cfg_search_time = '';
 $cfg_iscache = '1';
 $cfg_cachetime = '20';
-$cfg_cachemark = 'E20180611164613';
+$cfg_cachemark = 'E20180612111912';
 $cfg_issqlcache = '0';
 $cfg_cookie_encode = '';
 $cfg_ddimg_width = '300';

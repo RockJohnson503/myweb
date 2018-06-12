@@ -1,6 +1,6 @@
 <?php
 
-<script>
+echo "<script>
 (function(){
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
@@ -10,10 +10,10 @@
   else{
   bp.src = 'http://push.zhanzhang.baidu.com/push.js';
   }
-    var s = document.getElementsByTagName("script")[0];
+    var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script>
+</script>";
 
 
 ?>
