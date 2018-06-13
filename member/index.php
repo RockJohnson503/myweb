@@ -55,38 +55,39 @@ if($dm=='index')
 {
 	$ccgid=$_SESSION['duomi_user_group'];
 	$ccuid=$_SESSION['duomi_user_id'];
+	$u_name = $_SESSION['duomi_user_name'];
 	$cc1=$dsql->GetOne("select * from duomi_member_group where gid=$ccgid");
 	$ccgroup=$cc1['gname'];
 	$cc2=$dsql->GetOne("select * from duomi_member where id=$ccuid");
 	$ccjifen=$cc2['points'];
-	$logtime=$cc2['logintime'];
-	$cclog=$cc2['nickname'];
+	$n_name=$cc2['nickname'];
+	$logtime=$dsql->GetOne("select l_time from wanshi_login_info where u_name='$u_name' order by l_time desc");
 	echo "
 	用户信息：
 	<table width=\"100%\" style=\"border: 1px solid #E3E3E3;margin:20px 0\">
-	<tr align=\"center\">
-	<td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">用户名</td>
-	<td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">用户昵称</td>
-	<td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">最近登录</td>
-	<td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">用户组</td>
-	<td width=\"180\" style=\"border-bottom:1px solid #E3E3E3;\">剩余金币</td>
-	</tr>
-	<tr align=\"center\">
-	<td style=\"border-right:1px solid #E3E3E3;\">".$_SESSION['duomi_user_name']."</td>
-	<td style=\"border-right:1px solid #E3E3E3;\">".$cclog."</td>
-	<td style=\"border-right:1px solid #E3E3E3;\">".date("Y-m-d H:i:s", $logtime)."</td>
-	<td style=\"border-right:1px solid #E3E3E3;\">".$ccgroup."</td>
-	<td>".$ccjifen."</td>
-	</tr>
+        <tr align=\"center\">
+            <td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">用户名</td>
+            <td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">用户昵称</td>
+            <td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">最近登录</td>
+            <td width=\"180\" style=\"border-right:1px solid #E3E3E3;border-bottom:1px solid #E3E3E3;\">用户组</td>
+            <td width=\"180\" style=\"border-bottom:1px solid #E3E3E3;\">剩余金币</td>
+        </tr>
+        <tr align=\"center\">
+            <td style=\"border-right:1px solid #E3E3E3;\">".$u_name."</td>
+            <td style=\"border-right:1px solid #E3E3E3;\">".$n_name."</td>
+            <td style=\"border-right:1px solid #E3E3E3;\">".date("Y-m-d H:i:s", $logtime['l_time'])."</td>
+            <td style=\"border-right:1px solid #E3E3E3;\">".$ccgroup."</td>
+            <td>".$ccjifen."</td>
+        </tr>
 	</table>";
 	echo"会员组选择：<br/>";
 	$sql="select * from duomi_member_group";
 	$dsql->SetQuery($sql);
 	$dsql->Execute('al');
 	while($rowr=$dsql->GetObject('al'))
-		{
-		echo "<input style=\"background:f5f5f5;border:1px solid #ddd;height:25px;font-size:14px;margin:20px 10px 0 0;cursor: pointer;\" type=button value='".$rowr->gname."需要 ".$rowr->g_upgrade." 金币' onClick=\"self.location='?dm=group&gid=".$rowr->gid."';\">";
-		}
+    {
+        echo "<input style=\"background:f5f5f5;border:1px solid #ddd;height:25px;font-size:14px;margin:20px 10px 0 0;cursor: pointer;\" type=button value='".$rowr->gname."需要 ".$rowr->g_upgrade." 金币' onClick=\"self.location='?dm=group&gid=".$rowr->gid."';\">";
+    }
 }
 
 else

@@ -32,22 +32,29 @@ if($dopost=='login')
 $pwd = substr(md5($pwd),5,20);
 $row1=$dsql->GetOne("select * from duomi_member where username='$userid'");
 if($row1['username']==$userid AND $row1['password']==$pwd)
-		{
-					$_SESSION['duomi_user_id'] = $row1['id'];
-					$_SESSION['duomi_user_name'] = $row1['username'];
-                                        $_SESSION['duomi_nick_name'] = $row1['nickname'];
-					$_SESSION['duomi_user_group'] = $row1['gid'];
-					$ip = GetIP();
-					$sql = "UPDATE `duomi_member` set `logintime`=".time().", `loginip`='$ip' where `username`='$userid'";
-					ShowMsg("成功登录，正在转向首页！","/member/mybuy.php",0,1000);
-					exit();
+    {
+        $_SESSION['duomi_user_id'] = $row1['id'];
+        $_SESSION['duomi_user_name'] = $row1['username'];
+        $_SESSION['duomi_nick_name'] = $row1['nickname'];
+        $_SESSION['duomi_user_group'] = $row1['gid'];
+        $ip = GetIP();
+        $gac = $_SESSION["cfg_ac"];
+        $system = get_system();
+        if($gac == 'wx'){
+            $system = $system."-微信";
+        }
+        $sql = "insert into wanshi_login_info(u_name, l_ip, l_time, l_sys)
+                values('$userid', '$ip', " . time() . ", '$system')";
+        $dsql->ExecuteNoneQuery($sql);
+        ShowMsg("成功登录，正在转向首页！","/member/mybuy.php",0,1000);
+        exit();
 
-		}
-		else
-		{
-			ShowMsg("账号或密码错误","../member/login.php",0,1000);
-			exit();
-		}
+    }
+    else
+    {
+        ShowMsg("账号或密码错误","../member/login.php",0,1000);
+        exit();
+    }
 }
 else
 {
