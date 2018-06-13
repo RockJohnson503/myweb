@@ -86,7 +86,7 @@
       </span>
       [menulist:typename]</h1>
     <ul>
-    {duomicms:videolist num=6 order=hit type=[menulist:typeid]}
+    {duomicms:videolist num=6 order=hit commend=3 type=[menulist:typeid]}
     <li class="p1 m1{if:[videolist:i]% 3==0} mmr0{end if}{if:[videolist:i]% 6==0} pmr0{end if}"><a class="link-hover" href="[videolist:link]" title="[videolist:name]"><img class="lazy" data-original="[videolist:pic]" src="../images/load.gif" alt="[videolist:name]"><span class="video-bg"></span><span class="lzbz"><p class="name">[videolist:name]</p><p class="actor">[videolist:nolinkactor]</p><p class="actor">[videolist:typename]{if:"[videolist:nolinkjqtype]"<>""},{end if}[videolist:nolinkjqtype]</p><p class="actor">[videolist:publishtime]/[videolist:publisharea]</p></span><p class="other">{if:"[videolist:note]"<>""}<i>[videolist:note]</i>{else}{subif:[videolist:state]<>0}<i>[videolist:state]{end subif}{subif:[videolist:state]>999}期{end subif}{subif:[videolist:state]<1000 and [videolist:state]<>0}集{end subif}</i>{end if}</p></a>
     </li>
     {/duomicms:videolist}
