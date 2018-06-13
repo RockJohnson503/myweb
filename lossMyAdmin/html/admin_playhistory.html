@@ -17,9 +17,9 @@
           ?>
           <form action="?ac=delall" method="post"  name="delform" id="delform" >
           <table class="tb_style" id="tb_search_members" width="100%" border="0" cellpadding="0" cellspacing="0" >
-          <!--<tr class="thead">-->
-            <!--<td colspan="6">用户管理 （共 <?php echo count($srow); ?> 位会员 <a href="admin_members.php">精准查找</a>）</td>-->
-          <!--</tr>-->
+          <tr class="thead">
+            <td colspan="6">播放用户管理 （共 <?php echo $Totalu; ?> 位会员 <a href="admin_playhistory.php">精准查找</a>）</td>
+          </tr>
           <?php
             if(isset($srow[0]))
             {
@@ -71,34 +71,35 @@
           <?php
             }else{
           ?>
-          <table width="100%" id="tb_search_member" border="0" cellpadding="0" cellspacing="0" class="tb_style" style="<?php if(!empty($ac)) echo 'display:none';?>" >
-            <form action="?ac=list" method="post"  name="form1" id="form1" >
-
-          <tr class="thead">
-            <td colspan="2">用户管理</td>
-          </tr>
-              <tr>
-                <td height="30"  colspan="2" align="left" class="td_border">&nbsp;用户名:</td>
-              </tr>
-              <tr>
-                <td class="td_border" height="30" >&nbsp;
-                  <input type="text" style="width:250px" name="uname" id="uname"  value="" />
-                  &nbsp;可使用通配符 *</td>
-              </tr>
-              <tr>
-                <td  colspan="2"  height="30" align="left" class="td_border">&nbsp;用户 UID:</td>
-              </tr>
-              <tr>
-                <td class="td_border" height="30" >&nbsp;
-                  <input type="text" style="width:250px" name="uid" id="uid"  value="" />
-                  &nbsp;多个值之间用半角逗号 "," 隔开。</td>
-              </tr>
-              <tr>
-                <td class="td_border">&nbsp;
-                  <input type="submit" name="Submit"  value="搜索" class="rb1" /></td>
-              </tr>
-            </form>
-          </table>
+            <table width="100%" id="tb_search_member" border="0" cellpadding="0" cellspacing="0" class="tb_style" style="<?php if(!empty($ac)) echo 'display:none';?>" >
+                <form action="?ac=list" method="post"  name="form1" id="form1" >
+                    <tr class="thead">
+                    <td colspan="2">搜索用户</td>
+                    </tr>
+                    <tr>
+                    <td height="30"  colspan="2" align="left" class="td_border">&nbsp;用户名:</td>
+                    </tr>
+                    <tr>
+                    <td class="td_border" height="30" >&nbsp;
+                      <input type="text" style="width:250px" name="uname" id="uname"  value="" />
+                      &nbsp;可使用通配符 *</td>
+                    </tr>
+                    <tr>
+                    <td  colspan="2"  height="30" align="left" class="td_border">&nbsp;用户 UID:</td>
+                    </tr>
+                    <tr>
+                    <td class="td_border" height="30" >&nbsp;
+                      <input type="text" style="width:250px" name="uid" id="uid"  value="" />
+                      &nbsp;多个值之间用半角逗号 "," 隔开。
+                    </td>
+                    </tr>
+                    <tr>
+                    <td class="td_border">&nbsp;
+                      <input type="submit" name="Submit"  value="搜索" class="rb1" />
+                    </td>
+                    </tr>
+                </form>
+            </table>
           <?php
             }
           ?>

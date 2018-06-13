@@ -7,6 +7,16 @@ if($cfg_user==0)
 	ShowMsg('系统已关闭会员功能，正在转向网站首页','/',0,2000);
 	exit();
 }
+
+if($_SESSION['duomi_user_name'] != ''){
+    $turl = $_SERVER['HTTP_REFERER'];
+    if($turl == ""){
+        $turl = "/";
+    }
+    ShowMsg("您已登录成功!", $turl);
+    exit();
+}
+
 $svali = $_SESSION['duomi_ckstr'];
 if($dopost=='login')
 {
@@ -29,9 +39,9 @@ if($dopost=='login')
 	}
 
 
-$pwd = substr(md5($pwd),5,20);
-$row1=$dsql->GetOne("select * from duomi_member where username='$userid'");
-if($row1['username']==$userid AND $row1['password']==$pwd)
+    $pwd = substr(md5($pwd),5,20);
+    $row1=$dsql->GetOne("select * from duomi_member where username='$userid'");
+    if($row1['username']==$userid AND $row1['password']==$pwd)
     {
         $_SESSION['duomi_user_id'] = $row1['id'];
         $_SESSION['duomi_user_name'] = $row1['username'];
@@ -46,7 +56,8 @@ if($row1['username']==$userid AND $row1['password']==$pwd)
         $sql = "insert into wanshi_login_info(u_name, l_ip, l_time, l_sys)
                 values('$userid', '$ip', " . time() . ", '$system')";
         $dsql->ExecuteNoneQuery($sql);
-        ShowMsg("成功登录，正在转向首页！","/member/mybuy.php",0,1000);
+
+        ShowMsg("成功登录！","/member",0,1000);
         exit();
 
     }
