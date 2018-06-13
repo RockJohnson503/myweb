@@ -16,21 +16,46 @@ if(empty($ac))
 
 if($ac=='list')
 {
-	if(empty($uid)&&empty($uname))
+	if(empty($uid) && $uname == "")
 	{
 		$wheresql = "";
 	}else
 	{
 		$wheresql = "where";
 		if(!empty($uid)) $wheresql .= " id in ($uid) and";
-		if(!empty($uname)) 
+		if($uname != "")
 		{
 			$uname = str_replace('*','%',$uname);
 			$wheresql .= " username like '$uname'";
 		}
 	}
 	$wheresql = rtrim($wheresql,'and');
-	$sql = "select * from duomi_member $wheresql";
+
+	$numPerPage = 15;
+    $page = isset($page) ? intval($page) : 1;
+    if($page==0) $page=1;
+
+    $uTotal = $dsql->GetOne("select count(1) as dd from duomi_member");
+    if(is_array($uTotal)){
+        $Totalu = $uTotal['dd'];
+    }else{
+        $Totalu = 0;
+    }
+
+    $rowTotal = $dsql->GetOne("select count(1) as dd from duomi_member $wheresql");
+    if(is_array($rowTotal)){
+        $TotalResult = $rowTotal['dd'];
+    }else{
+        $TotalResult = 0;
+    }
+    $TotalPage = ceil($TotalResult/$numPerPage);
+
+    if($page>$TotalPage) $page=$TotalPage;
+    $limitstart = ($page-1) * $numPerPage;
+
+    if($limitstart<0) $limitstart=0;
+
+	$sql = "select * from duomi_member $wheresql order by id limit $limitstart, $numPerPage";
 	$dsql->SetQuery($sql);
 	$dsql->Execute('search_list');
 	$srow = array();
@@ -89,6 +114,46 @@ elseif($ac=='editsave')
 		ShowMsg("更新失败，请检查输入是否正确",'-1');
 	}
 		exit();
+}elseif($ac == "uinfo") {
+    if($uname == "")
+	{
+		$wheresql = "";
+	}else
+	{
+		$wheresql = "where";
+		if($uname != "")
+		{
+			$uname = str_replace('*','%',$uname);
+			$wheresql .= " u_name like '$uname'";
+		}
+	}
+	$wheresql = rtrim($wheresql,'and');
+
+    $numPerPage = 15;
+    $page = isset($page) ? intval($page) : 1;
+    if($page==0) $page=1;
+
+    $rowTotal = $dsql->GetOne("select count(1) as dd from wanshi_login_info $wheresql");
+    if(is_array($rowTotal)){
+        $TotalResult = $rowTotal['dd'];
+    }else{
+        $TotalResult = 0;
+    }
+    $TotalPage = ceil($TotalResult/$numPerPage);
+
+    if($page>$TotalPage) $page=$TotalPage;
+    $limitstart = ($page-1) * $numPerPage;
+
+    if($limitstart<0) $limitstart=0;
+
+	$sql = "select * from wanshi_login_info $wheresql order by l_id limit $limitstart, $numPerPage";
+    $dsql->SetQuery($sql);
+    $dsql->Execute('search_list');
+	$srow = array();
+	while($row=$dsql->GetArray('search_list'))
+	{
+		$srow[] = $row;
+	}
 }elseif($ac=='del')
 {	
 	$sql = "delete from duomi_member where id='$id'";

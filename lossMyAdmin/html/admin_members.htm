@@ -12,19 +12,19 @@
   <div class="r_content">
     <div class="r_content_1">
       <?php
-      if($ac=='list')
+      if($ac=='list')   // 用户信息
 	  {
       ?>
       <form action="?ac=delall" method="post"  name="delform" id="delform" >
       <table class="tb_style" id="tb_search_members" width="100%" border="0" cellpadding="0" cellspacing="0" >
       <tr class="thead">
-        <td colspan="11">用户管理 （共 <?php echo count($srow); ?> 位会员 <a href="admin_members.php">精准查找</a>）</td>
+        <td colspan="11">注册用户管理 （共 <?php echo $Totalu; ?> 位会员 <a href="admin_members.php">精准查找</a>）</td>
       </tr>
       <?php
       	if(isset($srow[0]))
         {
        ?>
-      <tr height="30"><td class="td_border">&nbsp;</td><td class="td_border">UID</td><td class="td_border">用户名</td><td class="td_border">邮箱</td><td class="td_border">注册时间</td><td class="td_border">登录IP</td><td class="td_border">用户组</td><td class="td_border">用户点数</td><td class="td_border">会员状态</td><td class="td_border">操作</td><td class="td_border"></td><td class="td_border"></td></tr>
+      <tr height="30"><td class="td_border">&nbsp;</td><td class="td_border">UID</td><td class="td_border">用户名</td><td class="td_border">邮箱</td><td class="td_border">注册时间</td><td class="td_border">用户组</td><td class="td_border">用户点数</td><td class="td_border">会员状态</td><td class="td_border">操作</td><td class="td_border"></td><td class="td_border"></td></tr>
       <?php
       	}
       	foreach($srow as $row)
@@ -33,10 +33,9 @@
         	echo '<tr>';
             echo '<td class="td_border" height="30" ><input class="checkbox" type="checkbox" value="'.$row['id'].'" name="uidarray[]"></td>';
             echo '<td class="td_border" height="30" >'.$row['id'].'</td>';
-            echo '<td class="td_border" height="30" >'.$row['username'].'</td>';
+            echo '<td class="td_border" height="30" ><a href="?ac=uinfo&uname='.$row['username'].'">'.$row['username'].'</a></td>';
             echo '<td class="td_border" height="30" >'.$row['email'].'</td>';
             echo '<td class="td_border" height="30" >'.date('Y-m-d H:i:s',$row['regtime']).'</td>';
-            echo '<td class="td_border" height="30" >'.$row['loginip'].'</td>';
             echo '<td class="td_border" height="30" >'.$rs['gname'].'</td>';
             echo '<td class="td_border" height="30" >'.$row['points'].'</td>';
             echo '<td class="td_border" height="30" >'.($row['state']?'正常':'禁止').'</td>';
@@ -49,12 +48,23 @@
         if(isset($srow[0]))
         {
       ?>
-      <tr>
-      <td class="td_border" colspan="10">
-      <input class="checkbox" type="checkbox" onclick="checkAll(this.checked,'input','uidarray[]')" name="chkall">
-删? &nbsp;
-<input id="submit_submit" class="rb1" type="submit" value="提交" title="按 Enter 键可随时提交你的修改" name="submit">
-      <td></tr>
+        <tr>
+            <td class="td_border" colspan="10">
+                <input class="checkbox" type="checkbox" onclick="checkAll(this.checked,'input','uidarray[]')" name="chkall">
+                删除? &nbsp;
+                <input id="submit_submit" class="rb1" type="submit" value="提交" title="按 Enter 键可随时提交你的修改" name="submit">
+            <td>
+        </tr>
+        <tr>
+            <td height="30" colspan="11" class="td_border">
+                <div class="cuspages">
+                      <div class="pages"> &nbsp;页次：<?php echo $page;?>/<?php echo $TotalPage;?> 每页<?php echo $numPerPage;?> 总收录数据<?php echo $TotalResult;?>条 <a href="?ac=list&page=1">首页</a> <a href="?ac=list&page=<?php echo ($page-1);?>">上一页</a> <a href="?ac=list&page=<?php echo ($page+1);?>">下一页</a> <a href="?ac=list&page=<?php echo $TotalPage;?>">尾页</a>&nbsp;&nbsp;跳转
+                        <input type="text" id="skip" value="" onkeyup="this.value=this.value.replace(/[^\d]+/,'')" style="width:40px"/>
+                        <input type="button" value="确定" class="btn" onclick="location.href='?ac=list&page='+ document.getElementById('skip').value;"/>
+                      </div>
+                </div>
+            </td>
+        </tr>
       <?php 
       	}
       ?>
@@ -62,7 +72,58 @@
       </form>
       <?php
       }
-      elseif($ac=='edit')
+      elseif($ac=='uinfo')   // 用户登录信息
+	  {
+      ?>
+      <form action="?ac=delall" method="post"  name="delform" id="delform" >
+      <table class="tb_style" id="tb_search_members" width="100%" border="0" cellpadding="0" cellspacing="0" >
+      <?php
+      	if(isset($srow[0]))
+        {
+       ?>
+      <tr height="30"><td class="td_border">&nbsp;</td><td class="td_border">用户名</td><td class="td_border">登录系统</td><td class="td_border">登录时间</td><td class="td_border">登录ip</td><td class="td_border">操作</td></tr>
+      <?php
+      	}
+      	foreach($srow as $row)
+        {
+        	echo '<tr>';
+            echo '<td class="td_border" height="30" ><input class="checkbox" type="checkbox" value="'.$row['id'].'" name="uidarray[]"></td>';
+            echo '<td class="td_border" height="30" >'.$row['u_name'].'</td>';
+            echo '<td class="td_border" height="30" >'.$row['l_sys'].'</td>';
+            echo '<td class="td_border" height="30" >'.date('Y-m-d H:i:s',$row['l_time']).'</td>';
+            echo '<td class="td_border" height="30" >'.$row['l_ip'].'</td>';
+            echo '<td class="td_border" height="30" ><a href="javascript:;" onclick="if(confirm(\'确定删除？操作不可恢复\')){return true;}else{return false;}">删除</a></td>';
+      		echo '</tr>';
+      	}
+        unset($rs);
+        if(isset($srow[0]))
+        {
+      ?>
+        <tr>
+            <td class="td_border" colspan="5">
+                <input class="checkbox" type="checkbox" onclick="checkAll(this.checked,'input','uidarray[]')" name="chkall">
+                删除? &nbsp;
+                <input id="submit_submit" class="rb1" type="submit" value="提交" title="按 Enter 键可随时提交你的修改" name="submit">
+            <td>
+        </tr>
+        <tr>
+            <td height="30" colspan="11" class="td_border">
+                <div class="cuspages">
+                    <div class="pages"> &nbsp;页次：<?php echo $page;?>/<?php echo $TotalPage;?> 每页<?php echo $numPerPage;?> 总收录数据<?php echo $TotalResult;?>条 <a href="?ac=uinfo&page=1&uname=<?php echo $uname; ?>">首页</a> <a href="?ac=uinfo&page=<?php echo ($page-1);?>&uname=<?php echo $uname; ?>">上一页</a> <a href="?ac=uinfo&page=<?php echo ($page+1);?>&uname=<?php echo $uname; ?>">下一页</a> <a href="?ac=uinfo&page=<?php echo $TotalPage;?>&uname=<?php echo $uname; ?>">尾页</a>&nbsp;&nbsp;跳转
+                        <input type="text" id="skipl" value="" onkeyup="this.value=this.value.replace(/[^\d]+/,'')" style="width:40px"/>
+                        <input type="button" value="确定" class="btn" onclick="location.href='?ac=uinfo&page='+ document.getElementById('skipl').value + '&uname=<?php echo $uname; ?>';"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+      <?php
+      	}
+      ?>
+      </table>
+      </form>
+      <?php
+      }
+      elseif($ac=='edit')   // 设置
 	  {
       ?>
       <form action="?ac=editsave" method="post">
@@ -106,14 +167,14 @@
     </table>
   	</form>
       <?php 
-      }else
+      }else     // 用户查找
       {
       ?>
       <table width="100%" id="tb_search_member" border="0" cellpadding="0" cellspacing="0" class="tb_style" style="<?php if(!empty($ac)) echo 'display:none';?>" >
         <form action="?ac=list" method="post"  name="form1" id="form1" >
         
       <tr class="thead">
-        <td colspan="2">用户管理</td>
+        <td colspan="2">搜索用户</td>
       </tr>
           <tr>
             <td height="30"  colspan="2" align="left" class="td_border">&nbsp;用户名:</td>

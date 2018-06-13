@@ -38,6 +38,13 @@ if($ac=='list')
     $page = isset($page) ? intval($page) : 1;
     if($page==0) $page=1;
 
+    $uTotal = $dsql->GetOne("select count(1) as dd from wanshi_play_history group by u_name");
+    if(is_array($uTotal)){
+        $Totalu = count($uTotal);
+    }else{
+        $Totalu = 0;
+    }
+
     $rowTotal = $dsql->GetOne("select count(1) as dd from wanshi_play_history $wheresql");
     if(is_array($rowTotal)){
         $TotalResult = $rowTotal['dd'];

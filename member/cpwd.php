@@ -25,13 +25,17 @@ if($dm=='ok')
 	}
 	if(!empty($newpwd)||!empty($email))
 	{
-	$pwd = empty($newpwd)?substr(md5($oldpwd),5,20):substr(md5($newpwd),5,20);
-	$dsql->ExecuteNoneQuery("update `duomi_member` set password = '$pwd' ".(empty($email)?'':"")." where id= '$uid'");
-	ShowMsg('密码修改成功','-1');	
-	exit();	
+        $pwd = empty($newpwd)?substr(md5($oldpwd),5,20):substr(md5($newpwd),5,20);
+        $dsql->ExecuteNoneQuery("update `duomi_member` set password = '$pwd' ".(empty($email)?'':"")." where id= '$uid'");
+        ShowMsg('密码修改成功','/member');
+        exit();
 	}
+}elseif($dm == "nick"){
+	$dsql->ExecuteNoneQuery("update duomi_member set nickname = '$nick' where id= '$uid'");
+	$_SESSION['duomi_nick_name'] = $nick;
+	ShowMsg('昵称修改成功','/member');
+	exit();
 }
-
 else
 {
 	$tempfile = duomi_ROOT."/member/html/cpwd.html";

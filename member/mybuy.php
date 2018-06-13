@@ -51,6 +51,7 @@ table tr td a{color:#555;}
 .foot a{color:#000}
 </style>
 </head>
+<body>
 <form id="favform" name="favform" action="?dm=1" method="post">
     <table width="100%" cellspacing="0" cellspaddng="0">
 	<tr align="center" style="background:#f5f5f5">
@@ -61,10 +62,8 @@ table tr td a{color:#555;}
     <?php
         while($row=$dsql->getArray('buylist'))
         {
-            $v_id = substr($row['p_url'], strpos($row['p_url'], "/video/?") + 8);
-            $ep = substr($v_id, strrpos($v_id, "-") + 1);
-            $ep = substr($ep, 0, strpos($ep, ".html"));
-            $v_id = substr($v_id, 0, strpos($v_id, "-"));
+            $v_id = $row['v_id'];
+            $ep = substr($row['p_url'], strrpos($row['p_url'], "-") + 1, strpos($row['p_url'], ".html")) + 1;
             $episodes = $dsql->GetOne("select body from duomi_playdata where v_id=$v_id");
     ?>
     <tr align="center">
@@ -74,12 +73,10 @@ table tr td a{color:#555;}
             <span style="display: <?php $born = strlen($episodes[0]) == 0 ? "block" : "none"; echo $born; ?>;">影片已不存在</span>
             <a style="display: <?php $born = strlen($episodes[0]) == 0 ? "none" : ""; echo $born; ?>;" href="<?php echo $row['p_url']; ?>" target="_blank">播放</a>
             <?php
-                if($ep + 1 < substr_count($episodes["body"], "期") != False or
-                    $ep + 1 < substr_count($episodes["body"], "集") != False){
-                    $ep += 1;
-                    if(strlen($episodes[0]) != 0){
-                        echo "| <a href='/video/?$v_id-0-$ep.html' target='_blank'>下一集</a>";
-                    }
+                if(($ep < substr_count($episodes["body"], "期") != False or
+                    $ep < substr_count($episodes["body"], "集") != False) and strlen($episodes[0]) != 0){
+                    $p_url = substr_replace($row['p_url'], $ep, strrpos($row['p_url'], "-") + 1, strlen($ep));
+                    echo "| <a href='$p_url' target='_blank'>下一集</a>";
                 }
             ?>
         </td>
@@ -91,7 +88,7 @@ table tr td a{color:#555;}
       <div class="foot">
         <?php
 		echo <<<EOT
-      第 $page 页 / 共 $page_count 页
+                第 $page 页 / 共 $page_count 页
                 <a href="?dm=mybuy&page=1" class="btn">首页</a> 
 				<a href="?dm=mybuy&page={$pre_page}">上一页</a> 
                 <a href="?dm=mybuy&page={$next_page}">下一页</a>
