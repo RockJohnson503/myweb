@@ -18,7 +18,7 @@
           <form action="?ac=delall" method="post"  name="delform" id="delform" >
           <table class="tb_style" id="tb_search_members" width="100%" border="0" cellpadding="0" cellspacing="0" >
           <tr class="thead">
-            <td colspan="6">播放用户管理 （共 <?php echo $Totalu; ?> 位会员 <a href="admin_playhistory.php">精准查找</a>）</td>
+            <td colspan="6">播放用户管理 （共 <?php echo count($urow); ?> 位会员 <a href="admin_playhistory.php">精准查找</a>）</td>
           </tr>
           <?php
             if(isset($srow[0]))
