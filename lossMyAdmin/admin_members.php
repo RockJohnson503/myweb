@@ -146,7 +146,7 @@ elseif($ac=='editsave')
 
     if($limitstart<0) $limitstart=0;
 
-	$sql = "select * from wanshi_login_info $wheresql order by l_id limit $limitstart, $numPerPage";
+	$sql = "select * from wanshi_login_info $wheresql order by l_time desc limit $limitstart, $numPerPage";
     $dsql->SetQuery($sql);
     $dsql->Execute('search_list');
 	$srow = array();
