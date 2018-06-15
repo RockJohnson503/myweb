@@ -86,5 +86,6 @@ else
 	$t=$mainClassObj->parseTopicList($t);
 	$t=replaceCurrentTypeId($t,-444);
 	$t=$mainClassObj->parseIf($t);
+	$t=str_replace("{duomicms:member}", front_member(),$t);
 	echo $t;
 } 

@@ -92,6 +92,7 @@ else
     }
     $t=str_replace("{wanshi:pwderr}", $pwderr, $t);
 	$t=str_replace("{wanshi:iderr}", $iderr,$t);
+	$t=str_replace("{duomicms:member}", front_member(),$t);
     echo $t;
 	exit();
 }
