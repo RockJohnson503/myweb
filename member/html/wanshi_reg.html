@@ -8,7 +8,9 @@
 		<script src="js/canvas-particle.js"></script>
 		<link rel="stylesheet" href="lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
-		<title>注册</title>
+		<title>注册{duomicms:webname}</title>
+		<meta name="keywords" content="用户登录-{duomicms:key}" />
+		<meta name="description" content="用户登录-{duomicms:des}" />
 		
 		
 		<style>
@@ -343,40 +345,40 @@
 	</head>
 	<body class="bg_color">
 		<div class="main">
-			<p style="text-align: left;font-size: 20px;"><a href="login.html"><i class="fa fa-chevron-left"></i></a></p>
+			<p style="text-align: left;font-size: 20px;"><a href="login.php"><i class="fa fa-chevron-left"></i></a></p>
 			<h3>注 册</h3>
-			<form action="baidu.com" method="post" onsubmit="return yanzheng()">
+			<form action="reg.php?dopost=reg" method="post" onsubmit="return yanzheng()">
 				<label></label>
 				
 				<label><i class="fa fa-envelope-open"></i>
 					<div>
-						<input class="mail" placeholder="请输入邮箱" />
+						<input name="email" class="mail" placeholder="请输入邮箱" />
 						<span class="error_info"></span>
 					</div>
 				</label>
 				
-				<label><i class="fa fa-envelope-open"></i>
+				<!--<label><i class="fa fa-envelope-open"></i>-->
+					<!--<div>-->
+						<!--<input placeholder="请输入验证码" />-->
+						<!--<span class="error_info"></span>-->
+						<!--<button class="send_code">发送验证码</button>-->
+					<!--</div>-->
+				<!--</label>-->
+				
+				<label><i class="fa fa-lock"></i>
 					<div>
-						<input placeholder="请输入验证码" />
+						<input type="password" name="m_pwd" class="pwd" placeholder="请输入密码" />
 						<span class="error_info"></span>
-						<button class="send_code">发送验证码</button>
 					</div>
 				</label>
 				
 				<label><i class="fa fa-lock"></i>
 					<div>
-						<input class="pwd" placeholder="请输入密码" />
+						<input type="password" name="m_pwd2" class="r_pwd" placeholder="请再次确认密码" />
 						<span class="error_info"></span>
 					</div>
 				</label>
-				
-				<label><i class="fa fa-lock"></i>
-					<div>
-						<input class="r_pwd" placeholder="请再次确认密码" />
-						<span class="error_info"></span>
-					</div>
-				</label>
-				<button>立即注册</button>
+				<button type="submit">立即注册</button>
 			</form>
 		</div>
 		<div id="mydiv"></div>
@@ -412,35 +414,35 @@
 				$('input').val("")
 			})
 			
-			$("label:first-of-type").change(function(){
-				alert($(this).children("input").val())
-				$(".touxiang").children("img").attr({ src:''});
-			})
+			// $("label:first-of-type").change(function(){
+			// 	alert($(this).children("input").val())
+			// 	$(".touxiang").children("img").attr({ src:''});
+			// })
 			
 			var mail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 			var pwd=/^[A-Za-z0-9]{6,12}$/;
-			var mail_val=$(".mail").val();
-			var pwd_val=$(".pwd").val();
-			var rpwd_val=$(".r_pwd").val();
+			var mail_val, pwd_val, rpwd_val;
 			
-				var mail_y,pwd_y,rpwd_y=0;
-				$(".mail").on('input propertychange',function mail_fun(){
+			var mail_y,pwd_y,rpwd_y=0;
+			$(".mail").on('input propertychange',function mail_fun(){
+			    mail_val=$(".mail").val();
 				var rs=mail.test(mail_val);
-					if(mail_val.indexOf("@")!=-1){
-						if(rs){
+				if(mail_val.indexOf("@")!=-1){
+					if(rs){
 						$(".mail").next().text("")
-					mail_y=1;
-						}else{
+						mail_y=1;
+					}else{
 						$(".mail").next().text("邮箱格式错误")
+						mail_y=0;
+					}
+				}else{
+					$(".mail").next().text("缺少@/.")
 					mail_y=0;
 				}
-					}else{
-					$(".mail").next().text("缺少@/.")
-				mail_y=0;
-			}
 			})
 			
-				$(".pwd").on('input propertychange',function pwd_fun(){
+			$(".pwd").on('input propertychange',function pwd_fun(){
+			    pwd_val=$(".pwd").val();
 				var rs=pwd.test(pwd_val);
 				if(pwd_val.length>=6 && pwd_val.length<=12 ){
 					if(rs){
@@ -456,7 +458,8 @@
 				}
 			})
 			
-			$(".r_pwd,.pwd").on('input propertychange',function r_pwd_fun(){
+			$(".r_pwd").on('input propertychange',function r_pwd_fun(){
+			    rpwd_val=$(".r_pwd").val();
 				if(pwd_val==rpwd_val){
 					$(".r_pwd").next().text("")
 					rpwd_y=1;
@@ -489,8 +492,12 @@
 			function yanzheng(){
 				if(mail_y+pwd_y+rpwd_y==3){
 					return true;
-				}else if(mail_val == '' && pwd_val == '' && rpwd_val == ''){
-					$('.error_info').text('不输入怎么注册')
+				}else if(mail_val == null){
+					$('.mail').next().text('不输入怎么注册啊!');
+				}else if(pwd_val == null){
+				    $('.pwd').next().text('不输入怎么注册啊!');
+				}else if(rpwd_val == null){
+				    $('.r_pwd').next().text('不输入怎么注册啊!');
 				}
 				return false;
 			}

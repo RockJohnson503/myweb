@@ -5,5 +5,5 @@ unset($_SESSION['duomi_user_id']);
 unset($_SESSION['duomi_user_name']);
 unset($_SESSION['duomi_user_group']);
 //生成同步退出的代码
-ShowMsg('成功退出当前登录，正在转向网站首页','/',0,2000);
+header("Location:/member/login.php");
 ?>

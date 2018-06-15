@@ -3,12 +3,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="/member/js/jquery-1.12.3.min.js"></script>
-		<script type="text/javascript" src="/member/lib/bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
-		<script src="/member/js/canvas-particle.js"></script>
-		<link rel="stylesheet" href="/member/lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="/member/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
-		<title>用户登录-{duomicms:webname}-Power by DuomiCms</title>
+		<script src="js/jquery-1.12.3.min.js"></script>
+		<script type="text/javascript" src="lib/bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
+		<script src="js/canvas-particle.js"></script>
+		<link rel="stylesheet" href="lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<title>用户登录-{duomicms:webname}</title>
 		<meta name="keywords" content="用户登录-{duomicms:key}" />
 		<meta name="description" content="用户登录-{duomicms:des}" />
 		
@@ -361,24 +361,24 @@
 		
 	</head>
 	<body class="bg_color">
-		
-		
 		<div class="main">
-			<p style="text-align: right;"><a href="javascript:;">跳过登录</a></p>
+			<p style="text-align: right; height: 20px">
+				<!--<a href="javascript:;">跳过登录</a>-->
+			</p>
 			<h3>登 录</h3>
-			<form action="login.php?dopost=login" method="post">
+			<form action="login.php?dopost=login" method="post" onsubmit="return yanzheng()">
 				<label></label>
 				<label><i class="fa fa-envelope-open"></i>
 					<div>
-						<input class="mail" name="userid" placeholder="请输入账号" />
-						<span class="error_info"></span>
+						<input class="mail" name="userid" placeholder="请输入账号或邮箱" />
+						<span class="error_info">{wanshi:iderr}</span>
 					</div>
 				</label>
 				
 				<label><i class="fa fa-lock"></i>
 					<div>
 						<input class="pwd" type="password" name="pwd" placeholder="请输入密码" />
-						<span class="error_info"></span>
+						<span class="error_info">{wanshi:pwderr}</span>
 					</div>
 				</label>
 				
@@ -388,7 +388,7 @@
 				
 				<label class="reg_Forget">
 					<p>
-						<a href="javascript:;">忘记密码</a><a href="javascript:;">立即注册</a>
+						<a href="javascript:;">忘记密码</a><a href="reg.php">立即注册</a>
 					</p>
 				</label>
 			</form>
@@ -435,32 +435,47 @@
 				alert($(this).children("input").val())
 				$(".touxiang").children("img").attr({ src:''});
 			})
+
+			$(".mail").click(function(){
+			    $(".mail").next().text(" ")
+			});
+
+			$(".pwd").click(function(){
+			    $(".pwd").next().text(" ")
+			});
 			
 			function yanzheng(){
-				var mail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-				var pwd=/^[a-zA-Z]\w{5,17}$/;
+				// var mail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+				// var pwd=/^[a-zA-Z]\w{5,17}$/;
 				var mail_val=$(".mail").val();
-				var rs_usname=mail.test(mail_val);
+				// var rs_usname=mail.test(mail_val);
 				var pwd_val=$(".pwd").val();
-				var rs_pwd=pwd.test(pwd_val);
-				if(mail_val.indexOf("@")!=-1){
-					if(rs_usname){
-						$(".mail").next().text("")
-						if(pwd_val.length>=6 && pwd_val.length<=12 ){
-							if(rs_pwd){
-								$(".pwd").next().text("")
-								return true;
-							}else{
-								$(".pwd").next().text("密码格式错误")
-							}
-						}else{
-							$(".pwd").next().text("密码必须是6-18位")
-						}
-					}else{
-						$(".mail").next().text("邮箱格式错误")
-					}
+				// var rs_pwd=pwd.test(pwd_val);
+				// if(mail_val.indexOf("@")!=-1){
+				// 	if(rs_usname){
+				// 		$(".mail").next().text("")
+				// 		if(pwd_val.length>=6 && pwd_val.length<=12 ){
+				// 			if(rs_pwd){
+				// 				$(".pwd").next().text("")
+				// 				return true;
+				// 			}else{
+				// 				$(".pwd").next().text("密码格式错误")
+				// 			}
+				// 		}else{
+				// 			$(".pwd").next().text("密码必须是6-18位")
+				// 		}
+				// 	}else{
+				// 		$(".mail").next().text("邮箱格式错误")
+				// 	}
+				// }else{
+				// 	$(".mail").next().text("缺少@|.")
+				// }
+				if(mail_val == ""){
+				    $('.mail').next().text('不输入怎么登录啊!');
+				}else if(pwd_val == ""){
+				    $('.pwd').next().text('不输入怎么登录啊!');
 				}else{
-					$(".mail").next().text("缺少@|.")
+				    return true;
 				}
 				return false;
 			}

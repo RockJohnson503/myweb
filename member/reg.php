@@ -9,15 +9,15 @@ if($cfg_user==0)
 }
 
 $svali = $_SESSION['duomi_ckstr'];
-$action = isset($action) ? trim($action) : '';
-if($action=='reg')
+
+if($dopost=='reg')
 {
     $dtime = time();
     $ip = GetIp();
 
     $validate = empty($validate) ? '' : strtolower(trim($validate));
 
-    if($validate=='' || $validate != $svali)
+    if(($validate=='' || $validate != $svali) and $_SESSION['cfg_ac'] != "app")
     {
         ResetVdValue();
         ShowMsg('验证码不正确!','reg.php');
@@ -26,21 +26,21 @@ if($action=='reg')
 
     if(trim($m_pwd)<>trim($m_pwd2) || trim($m_pwd)=='')
     {
-        ShowMsg('两次输入密码不一致或密码为空','reg.php');
+        header("Location:reg.php?err=1");
         exit();
     }
 
-    $username = $m_user;
+    $username = substr($email, 0, strpos($email, "@"));
     $row1=$dsql->GetOne("select username from duomi_member where username='$username'");
-    if($row1['username'] == $username)
+    if($row1['username'] == $username and $_SESSION['cfg_ac'] != "app")
     {
-        ShowMsg('用户已存在','reg.php');
+        header("Location:reg.php?err=2");
         exit();
     }
 
     $row2=$dsql->GetOne("select email from duomi_member where email='$email'");
     if($row2['email'] == $email){
-        ShowMsg('邮箱已注册','reg.php');
+        header("Location:reg.php?err=3");
         exit();
     }
 
@@ -60,16 +60,19 @@ if($action=='reg')
                     values('$username', '$ip', " . time() . ", '$system')";
             $dsql->ExecuteNoneQuery($sql);
 
-            ShowMsg("注册成功！", "/member",0,1000);
+            header("Location:/member/");
             exit();
         }else{
-            ShowMsg('注册失败', 'reg.php', 0, 1000);
+            header("Location:reg.php");
         }
 	}
 }
 else
 {
-	$tempfile = duomi_ROOT."/member/html/reg.html";
+    $tempfile = duomi_ROOT."/member/html/reg.html";
+    if($_SESSION['cfg_ac'] == "app"){
+        $tempfile = duomi_ROOT."/member/html/wanshi_reg.html";
+    }
 	$content=loadFile($tempfile);
 	$t=$content;
 	$t=$mainClassObj->parseTopAndFoot($t);
@@ -83,6 +86,5 @@ else
 	$t=$mainClassObj->parseTopicList($t);
 	$t=replaceCurrentTypeId($t,-444);
 	$t=$mainClassObj->parseIf($t);
-	$t=str_replace("{duomicms:member}", front_member(),$t);
 	echo $t;
 } 

@@ -12,7 +12,7 @@ if($_SESSION['duomi_user_name'] != ''){
     if($turl == ""){
         $turl = "/";
     }
-    ShowMsg("您已登录成功!", $turl);
+    header("Location:".$turl);;
     exit();
 }
 
@@ -38,8 +38,8 @@ if($dopost=='login')
 	}
 
     $pwd = substr(md5($pwd),5,20);
-    $row1=$dsql->GetOne("select * from duomi_member where username='$userid'");
-    if($row1['username']==$userid AND $row1['password']==$pwd)
+    $row1=$dsql->GetOne("select * from duomi_member where username='$userid' or email='$userid'");
+    if(($row1['username']==$userid or $row1['email'] == $userid) and $row1['password']==$pwd)
     {
         $_SESSION['duomi_user_id'] = $row1['id'];
         $_SESSION['duomi_user_name'] = $row1['username'];
@@ -57,7 +57,11 @@ if($dopost=='login')
     }
     else
     {
-        header("Location:/member/login.php");
+        if($row1['username']==$userid or $row1['email'] == $userid){
+            header("Location:/member/login.php?err=1");
+        }else{
+            header("Location:/member/login.php?err=2");
+        }
         exit();
     }
 }
@@ -80,7 +84,14 @@ else
 	$t=$mainClassObj->parseTopicList($t);
 	$t=replaceCurrentTypeId($t,-444);
 	$t=$mainClassObj->parseIf($t);
-	$t=str_replace("{duomicms:member}",front_member(),$t);
+	$pwderr = $iderr = "";
+	if($err == 1){
+	    $pwderr = "密码错误了!";
+    }elseif($err == 2){
+	    $iderr = "账号或邮箱不存在啊!";
+    }
+    $t=str_replace("{wanshi:pwderr}", $pwderr, $t);
+	$t=str_replace("{wanshi:iderr}", $iderr,$t);
     echo $t;
 	exit();
 }
