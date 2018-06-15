@@ -186,6 +186,7 @@ if(!empty($mac)){
 }
 
 function get_system(){
+    $gac = $_SESSION["cfg_ac"];
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (stripos($user_agent, "iPhone")!==false or stripos($user_agent, "Mac OS X")!==false) {
         $brand = 'iPhone';
@@ -235,6 +236,11 @@ function get_system(){
         }else{
             $brand = '电脑';
         }
+    }
+    if($gac == 'wx'){
+        $brand = $brand."-微信";
+    }elseif($gac == 'app'){
+        $brand = $brand."-App";
     }
     return $brand;
 }

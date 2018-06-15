@@ -1,5 +1,4 @@
 ﻿<?php
-session_start();
 require_once("../duomiphp/common.php");
 require_once(duomi_INC."/core.class.php");
 if($cfg_user==0)
@@ -21,7 +20,7 @@ $svali = $_SESSION['duomi_ckstr'];
 if($dopost=='login')
 {
 	$validate = empty($validate) ? '' : strtolower(trim($validate));
-	if($validate=='' || $validate != $svali)
+	if(($validate=='' || $validate != $svali) and $_SESSION['cfg_ac'] != "app")
 	{
 		ResetVdValue();
 		ShowMsg('验证码不正确!','login.php');
@@ -38,7 +37,6 @@ if($dopost=='login')
 		exit();
 	}
 
-
     $pwd = substr(md5($pwd),5,20);
     $row1=$dsql->GetOne("select * from duomi_member where username='$userid'");
     if($row1['username']==$userid AND $row1['password']==$pwd)
@@ -48,28 +46,27 @@ if($dopost=='login')
         $_SESSION['duomi_nick_name'] = $row1['nickname'];
         $_SESSION['duomi_user_group'] = $row1['gid'];
         $ip = GetIP();
-        $gac = $_SESSION["cfg_ac"];
         $system = get_system();
-        if($gac == 'wx'){
-            $system = $system."-微信";
-        }
         $sql = "insert into wanshi_login_info(u_name, l_ip, l_time, l_sys)
                 values('$userid', '$ip', " . time() . ", '$system')";
         $dsql->ExecuteNoneQuery($sql);
 
-        ShowMsg("成功登录！","/member",0,1000);
+        header("Location:/");;
         exit();
 
     }
     else
     {
-        ShowMsg("账号或密码错误","../member/login.php",0,1000);
+        header("Location:/member/login.php");
         exit();
     }
 }
 else
 {
-	$tempfile = duomi_ROOT."/member/html/login.html";
+    $tempfile = duomi_ROOT."/member/html/login.html";
+    if($_SESSION['cfg_ac'] == "app"){
+        $tempfile = duomi_ROOT."/member/html/wanshi_login.html";
+    }
 	$content=loadFile($tempfile);
 	$t=$content;
 	$t=$mainClassObj->parseTopAndFoot($t);
@@ -84,6 +81,6 @@ else
 	$t=replaceCurrentTypeId($t,-444);
 	$t=$mainClassObj->parseIf($t);
 	$t=str_replace("{duomicms:member}",front_member(),$t);
-	echo $t;
+    echo $t;
 	exit();
 }

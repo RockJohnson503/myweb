@@ -55,11 +55,7 @@ if($action=='reg')
             $_SESSION['duomi_nick_name'] = $row1['nickname'];
             $_SESSION['duomi_user_group'] = $row1['gid'];
             $ip = GetIP();
-            $gac = $_SESSION["cfg_ac"];
             $system = get_system();
-            if($gac == 'wx'){
-                $system = $system."-微信";
-            }
             $sql = "insert into wanshi_login_info(u_name, l_ip, l_time, l_sys)
                     values('$username', '$ip', " . time() . ", '$system')";
             $dsql->ExecuteNoneQuery($sql);

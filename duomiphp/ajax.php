@@ -58,16 +58,12 @@ switch ($action) {
 
 function playhistory($video, $url, $v_id){
        global $dsql;
-       $gac = $_SESSION["cfg_ac"];
        $user_name = $_SESSION["duomi_user_name"];
        if($user_name == ""){
            $user_name = GetIP();
        }
        $time = time();
        $system = get_system();
-       if($gac == 'wx'){
-            $system = $system."-微信";
-       }
        $sql = "select 2 from wanshi_play_history where u_name='$user_name' and p_url = '$url'";
        $res = $dsql->ExecuteNoneQuery2($sql);
        if($res > 0){

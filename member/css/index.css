@@ -1,0 +1,110 @@
+/*通用样式*/
+body,h1,h2,h3,h4,h5,h6,p,span,input,button,em,img,ol,ul,li{
+	margin: 0;
+	padding: 0;
+	font-size: 0.875em;
+}
+ul,ol,li{
+	list-style: none;
+}
+input,a,bottom{
+	outline:none;
+}
+a{
+	color:#ccc;
+	text-decoration:none;
+}
+/*头部*/
+header{
+	background:rgb(0,0,0);
+}
+header .header_main{
+	position: relative;
+	height: 42px;
+	width: 1200px;
+	margin: 0 auto;
+	padding: 9px 0;
+}
+header .logo{
+	display: inline-block;
+}
+header .search{
+	margin-left: 300px;
+	height: 32px;
+	width: 500px;
+	display:inline-block;
+	border-bottom:2px solid #ccc; 
+	position: relative;
+}
+header .search>i{
+	background: #ccc;
+	position: absolute;
+}
+header .search>.left_border{
+	width: 2px;
+	height: 0px;
+	bottom: 0;
+}
+header .search>.top_border{
+	width: 0;
+	height: 2px;
+	top: -8px;
+}
+header .search>.right_border{
+	width: 2px;
+	height: 0;
+	top: -8px;
+	right: 35px;
+}
+
+header .search>input{
+	width:440px;
+	padding:0 10px;
+	font-size: 20px;
+	position: absolute;
+	background: rgba(0,0,0,0);
+	border: 0;
+	bottom: 8px;
+	color: white;
+	font-weight: lighter;
+}
+header .search>button{
+	position: absolute;
+	right: 5px;
+	bottom: 7px;
+	height:30px;
+	background: rgba(0,0,0,0);
+	border: 0;
+}
+
+header .user{
+	position: absolute;
+	right: 0;
+	top: 5px;
+}
+header .user li{
+	float: left;
+	margin-left:20px;
+	height: 30px;
+	width: 30px;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	letter-spacing: 2.5px;
+}
+header .user li img{
+	transition-duration: .3s;
+}
+header .user li:hover img{
+	transform:translatey(-3px)
+}
+header .user li:last-of-type{
+	width: 50px;
+	height: 50px;
+	margin-left: 30px;
+}
+header .user .user_head img{
+	position: relative;
+}
+
+/*头部结束*/

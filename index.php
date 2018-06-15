@@ -26,6 +26,10 @@ if($cfg_runmode=='0')
 }
 checkIP();
 
+if($_SESSION['cfg_ac'] == "app" and $_SESSION['duomi_user_name'] == ""){
+    header("Location:/member/login.php");
+}
+
 echoIndex();
 function echoIndex()
 {

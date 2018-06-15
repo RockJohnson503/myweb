@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/jquery-1.12.3.min.js"></script>
+		<script type="text/javascript" src="lib/bootstrap-3.3.7/dist/js/bootstrap.min.js" ></script>
+		<script src="js/canvas-particle.js"></script>
+		<link rel="stylesheet" href="lib/bootstrap-3.3.7/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<title>注册</title>
+		
+		
+		<style>
+			a{
+				color:#00ccff;
+				text-decoration: none;
+			}
+			a:link{
+				text-decoration: none;
+			}
+			a:hover{
+				color:#00ccff;
+				opacity: .5;
+				text-decoration: none;
+			}
+			a:active{
+				text-decoration: none;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+				letter-spacing: 1.6px;
+				font-family: "微软雅黑","microsoft yahei";
+				font-weight: lighter;
+			}
+			input{
+				outline: none;
+			}
+			.bg_color{
+				background: #12434D;
+			}
+			.main{
+				background:rgba(0,0,0,.5);
+				display: block;
+				width: 100%;
+				box-shadow: 1px 1px 1px rgba(0,0,0,0);
+				border-radius: 5px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				padding: 10px;
+				box-shadow: 0 3px 10px 3px rgba(0,0,0,.2);
+			}
+			.main>h3{
+				/*font-size: 20px;*/
+				margin: 20px 0 10px 0;
+				text-align: center;
+				color: rgba(255,255,255,.8);
+			}
+			.main>form{
+				text-align: center;
+			}
+			.main>form label{
+				color: #00ccff;
+				margin-top: 10px;
+				position: relative;
+			}
+			.main>form label>i{
+				font-size: 18px;
+				line-height: 45px;
+			}
+			.main>form label>div{
+				height: 35px;
+				border-bottom: 1px solid #00ccff;
+				float: right;
+				margin-left: 10px;
+				position: relative;
+			}
+			.main>form label>div>input{
+				border:0px;
+				line-height: 35px;
+				border-bottom: 1px solid #00ccff;
+				background: rgba(0,0,0,0);
+				font-size: 15px;
+				width: 200px;
+			}
+			.main>form>label >div>.error_info{
+				position: absolute;
+				bottom: -20px;
+				left:0px;
+				color: #00ccff;
+				font-size: 12px;
+			}
+			.main>form>button{
+				background: rgba(0,0,0,0);
+				border: 1px solid #00ccff;
+				color: #00ccff;
+				display: block;
+				margin: 20px auto;
+				padding: 5px 0;
+				width: 230px;
+				height:40px;
+				font-size: 15px;
+				border-radius: 20px;
+			}
+			.main>form>label .touxiang{
+				display: block;
+				height: 80px;
+				width: 80px;
+				background: #00ccff;
+				border-radius: 50%;
+				margin: 0 auto;
+				margin-bottom: 10px;
+				overflow: hidden;
+			}
+			.main>form>label .touxiang>img{
+				width: 100%;
+			}
+			.main>form>label .touxiang>i{
+				line-height: 80px;
+				color: #fff;
+			}
+			.main>form>label >input{
+				display: none;
+			}
+			.main>form label:first-of-type{
+				width: 100px;
+				font-size: 20px;
+				display: block;	
+				font-weight: lighter;
+				margin: 10px auto;
+			}
+			.main>form label>i{
+				transition-duration: .5s;
+			}
+			.main>form label:hover>i{
+				transform: translateY(-10px);
+			}
+			.main>form label:nth-of-type(3) button{
+				position:absolute;
+				display: block;
+				top: 5px;
+				right: 0;
+				background: #00ccff;
+				padding: 5px;
+				border-radius:10px ;
+				color: #fff;
+				font-size: 12px;
+				border: 0;
+			}
+			.main>form label:nth-of-type(3)>i{
+				font-size: 18px;
+			}
+			.main>form label:nth-of-type(4)>i,.main>form label:nth-of-type(5)>i{
+				font-size: 25px;
+			}
+			.main>form label:nth-of-type(3) a:hover{
+				text-decoration: none;					
+			}
+			
+			@media only screen and (min-width: 640px) and (max-width: 1024px) {
+				.main>form label>div>input{
+					border:0px;
+					line-height: 35px;
+					border-bottom: 1px solid #00ccff;
+					background: rgba(0,0,0,0);
+					font-size: 15px;
+					width: 230px;
+				}
+				.main>form label{
+					display: block;
+					width: 260px;
+					color: #00ccff;
+					margin:20px auto;
+					position: relative;
+				}
+				.main>form>button{
+					background: rgba(0,0,0,0);
+					border: 1px solid #00ccff;
+					color: #00ccff;
+					display: block;
+					margin: 50px auto;
+					padding: 5px 0;
+					width: 260px;
+					height:40px;
+					font-size: 15px;
+					border-radius: 20px;
+				}
+				form{
+					position: absolute;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+					margin: auto;
+					height: 550px;
+				}
+			}
+			
+			@media only screen and (max-width: 640px) {
+				form{
+					position: absolute;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+					margin: auto;
+					height: 450px;
+				}
+			}
+			
+			/*电脑样式*/			
+			@media only screen and (min-width: 1025px) {
+				.main{
+					background:#fff;
+					display: block;
+					width: 320px;
+					height: 440px;
+					box-shadow: 1px 1px 1px rgba(0,0,0,0);
+					
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					margin: auto;
+					
+					padding: 10px;
+					box-shadow: 0 3px 10px 3px rgba(0,0,0,.2);
+				}
+				.main>h3{
+					/*font-size: 20px;*/
+					margin: 20px 0;
+					text-align: center;
+					color: rgba(0,0,0,.5);
+				}
+				.main>form{
+					text-align: center;
+				}
+				.main>form label{
+					color: #00ccff;
+					margin-top: 10px;
+					position: relative;
+				}
+				.main>form label>i{
+					font-size: 18px;
+					line-height: 45px;
+				}
+				.main>form label>div{
+					height: 35px;
+					border-bottom: 1px solid #00ccff;
+					float: right;
+					margin-left: 10px;
+					position: relative;
+				}
+				.main>form label>div>input{
+					border:0px;
+					line-height: 35px;
+					background: rgba(0,0,0,0);
+					font-size: 15px;
+					width: 200px;
+				}
+				.main>form>label >div>.error_info{
+					position: absolute;
+					bottom: -20px;
+					left:0px;
+					color: #00ccff;
+					font-size: 12px;
+				}
+				.main>form>button{
+					background: rgba(0,0,0,0);
+					border: 1px solid #00ccff;
+					color: #00ccff;
+					display: block;
+					margin: 20px auto;
+					padding: 5px 0;
+					width: 230px;
+					font-size: 15px;
+					border-radius: 20px;
+				}
+				.main>form>label .touxiang{
+					display: block;
+					height: 80px;
+					width: 80px;
+					background: #00ccff;
+					border-radius: 50%;
+					margin: 0 auto;
+					margin-bottom: 10px;
+					overflow: hidden;
+				}
+				.main>form>label .touxiang>img{
+					width: 100%;
+				}
+				.main>form>label .touxiang>i{
+					line-height: 80px;
+					color: #fff;
+				}
+				.main>form>label >input{
+					display: none;
+				}
+				.main>form label:first-of-type{
+					color:rgba(0,0,0,.5);
+					font-size: 20px;
+					/*display: block;*/	
+					font-weight: lighter;
+					
+				}
+				.main>form label>i{
+					transition-duration: .5s;
+				}
+				.main>form label:hover>i{
+					transform: translateY(-10px);
+				}
+				.main>form label:nth-of-type(3) button{
+					position:absolute;
+					display: block;
+					top: 5px;
+					right: 0;
+					background: #00ccff;
+					padding: 5px;
+					border-radius:10px ;
+					color: #fff;
+					font-size: 12px;
+					border: 0;
+				}
+				.main>form label:nth-of-type(3)>i{
+					font-size: 18px;
+				}
+				.main>form label:nth-of-type(4)>i,.main>form label:nth-of-type(5)>i{
+					font-size: 25px;
+				}
+				.main>form label:nth-of-type(3) a:hover{
+					text-decoration: none;					
+				}
+			}
+		</style>
+		
+		
+	</head>
+	<body class="bg_color">
+		<div class="main">
+			<p style="text-align: left;font-size: 20px;"><a href="login.html"><i class="fa fa-chevron-left"></i></a></p>
+			<h3>注 册</h3>
+			<form action="baidu.com" method="post" onsubmit="return yanzheng()">
+				<label></label>
+				
+				<label><i class="fa fa-envelope-open"></i>
+					<div>
+						<input class="mail" placeholder="请输入邮箱" />
+						<span class="error_info"></span>
+					</div>
+				</label>
+				
+				<label><i class="fa fa-envelope-open"></i>
+					<div>
+						<input placeholder="请输入验证码" />
+						<span class="error_info"></span>
+						<button class="send_code">发送验证码</button>
+					</div>
+				</label>
+				
+				<label><i class="fa fa-lock"></i>
+					<div>
+						<input class="pwd" placeholder="请输入密码" />
+						<span class="error_info"></span>
+					</div>
+				</label>
+				
+				<label><i class="fa fa-lock"></i>
+					<div>
+						<input class="r_pwd" placeholder="请再次确认密码" />
+						<span class="error_info"></span>
+					</div>
+				</label>
+				<button>立即注册</button>
+			</form>
+		</div>
+		<div id="mydiv"></div>
+		<script>
+			$(function(){
+				
+				//配置
+				var config = {
+					vx: 4,	//小球x轴速度,正为右，负为左
+					vy: 4,	//小球y轴速度
+					height: 2,	//小球高宽，其实为正方形，所以不宜太大
+					width: 2,
+					count: 200,		//点个数
+					color: "121, 162, 185", 	//点颜色
+					stroke: "130,255,255", 		//线条颜色
+					dist: 6000, 	//点吸附距离
+					e_dist: 20000, 	//鼠标吸附加速距离
+					max_conn: 10 	//点到点最大连接数
+					
+				}
+				
+				if($(window).innerWidth()<=720){
+					config.count=70;
+				}else if($(window).innerWidth()>1366){
+					config.count=500;
+				}
+				//调用
+				CanvasParticle(config);
+			})
+			
+			//每次刷新清空文本框中的值
+			$(function(){
+				$('input').val("")
+			})
+			
+			$("label:first-of-type").change(function(){
+				alert($(this).children("input").val())
+				$(".touxiang").children("img").attr({ src:''});
+			})
+			
+			var mail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+			var pwd=/^[A-Za-z0-9]{6,12}$/;
+			var mail_val=$(".mail").val();
+			var pwd_val=$(".pwd").val();
+			var rpwd_val=$(".r_pwd").val();
+			
+				var mail_y,pwd_y,rpwd_y=0;
+				$(".mail").on('input propertychange',function mail_fun(){
+				var rs=mail.test(mail_val);
+					if(mail_val.indexOf("@")!=-1){
+						if(rs){
+						$(".mail").next().text("")
+					mail_y=1;
+						}else{
+						$(".mail").next().text("邮箱格式错误")
+					mail_y=0;
+				}
+					}else{
+					$(".mail").next().text("缺少@/.")
+				mail_y=0;
+			}
+			})
+			
+				$(".pwd").on('input propertychange',function pwd_fun(){
+				var rs=pwd.test(pwd_val);
+				if(pwd_val.length>=6 && pwd_val.length<=12 ){
+					if(rs){
+						$(".pwd").next().text("")
+						pwd_y=1;
+					}else{
+						$(".pwd").next().text("密码格式错误")
+						pwd_y=0;
+					}
+				}else{
+					$(".pwd").next().text("密码必须是6-12位")
+					pwd_y=0;
+				}
+			})
+			
+			$(".r_pwd,.pwd").on('input propertychange',function r_pwd_fun(){
+				if(pwd_val==rpwd_val){
+					$(".r_pwd").next().text("")
+					rpwd_y=1;
+				}else{
+					$(".r_pwd").next().text("确认密码与密码不一致")
+					rpwd_y=0;
+				}
+			})
+			
+			var a=60
+			$('.send_code').click(function(){
+				$(this).css({"background":"#f0f0f0","color":"#666666"})
+				$('.send_code').attr('disabled',"disabled"); //添加disabled属性 
+				var time=setInterval(function(){
+					$('.send_code').text('等待('+a+')秒')
+					a--
+					if (a<0) {
+						clearInterval(time)
+						a=60
+						$('.send_code').text('发送验证码')
+					}
+				},1000)
+				setTimeout(function(){
+					$('.send_code').removeAttr("disabled"); //移除disabled属性 
+					$('.send_code').css({"background":"#00ccff","color":"#fff"})
+				},a*1000)
+			})
+			
+			
+			function yanzheng(){
+				if(mail_y+pwd_y+rpwd_y==3){
+					return true;
+				}else if(mail_val == '' && pwd_val == '' && rpwd_val == ''){
+					$('.error_info').text('不输入怎么注册')
+				}
+				return false;
+			}
+			
+			
+		</script>
+	</body>
+</html>
