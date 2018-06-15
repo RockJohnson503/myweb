@@ -3,3 +3,4 @@
 data/common.inc.php
 uploads/allimg
 data/cache
+data/config.cache.inc.php
