@@ -4,6 +4,7 @@ require_once("../duomiphp/common.php");
 unset($_SESSION['duomi_user_id']);
 unset($_SESSION['duomi_user_name']);
 unset($_SESSION['duomi_user_group']);
+unset($_SESSION['duomi_nick_name']);
 //生成同步退出的代码
 header("Location:/member/login.php");
 ?>

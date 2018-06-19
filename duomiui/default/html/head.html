@@ -15,7 +15,7 @@
       <li><a href="/{duomicms:webpath}interface/gbook.php">留言</a></li>
     </ul>
     <ul class="search so">
-      <form name="formsearch" id="formsearch" action='/search.php' method="post"  target="_self" autocomplete="off">
+      <form name="formsearch" id="formsearch" action='/search.php' method="get"  target="_self" autocomplete="off">
           <input class="input" name="searchword" type="text" id="keyword" placeholder="请输入影片或演员名" />
           <div class="so-key">{duomicms:keywords}</div>
           <input class="imgbt" type="submit" value=""/>
@@ -82,7 +82,7 @@
   </div>
   <div id="sj-nav-search" class="nav-down-1 sy2 sj-noover" style="display:none;" _t_nav1="sj-nav-search">
     <div class="nav-down-2 sj-nav-down-search clearfix">
-    <form name="formsearch" id="formsearch" action='/{duomicms:webpath}search.php' method="post"  target="_self" autocomplete="off">
+    <form name="formsearch" id="formsearch" action='/{duomicms:webpath}search.php' method="get"  target="_self" autocomplete="off">
           <input class="input" name="searchword" type="text" id="keyword" placeholder="输入关键词"/>
           <input class="imgbt" type="submit" value="搜索"/>
       </form>

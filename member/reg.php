@@ -1,5 +1,4 @@
 ﻿<?php
-session_start();
 require_once("../duomiphp/common.php");
 require_once(duomi_INC.'/core.class.php');
 if($cfg_user==0)
@@ -60,7 +59,7 @@ if($dopost=='reg')
                     values('$username', '$ip', " . time() . ", '$system')";
             $dsql->ExecuteNoneQuery($sql);
 
-            header("Location:/member/");
+            header("Location:/");
             exit();
         }else{
             header("Location:reg.php");
