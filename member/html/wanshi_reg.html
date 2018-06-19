@@ -444,7 +444,7 @@
 			$(".pwd").on('input propertychange',function pwd_fun(){
 			    pwd_val=$(".pwd").val();
 				var rs=pwd.test(pwd_val);
-				if(pwd_val.length>=6 && pwd_val.length<=12 ){
+				if(pwd_val.length>=6 && pwd_val.length<=16 ){
 					if(rs){
 						$(".pwd").next().text("")
 						pwd_y=1;
@@ -453,7 +453,7 @@
 						pwd_y=0;
 					}
 				}else{
-					$(".pwd").next().text("密码必须是6-12位")
+					$(".pwd").next().text("密码必须是6-16位")
 					pwd_y=0;
 				}
 			})
