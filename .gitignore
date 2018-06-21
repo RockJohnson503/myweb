@@ -2,5 +2,6 @@
 *.inc
 data/common.inc.php
 uploads/allimg
-data/cache/*
+data/cache
+data/cache/review/0/20108.js
 data/config.cache.inc.php
