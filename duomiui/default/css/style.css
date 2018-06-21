@@ -372,6 +372,8 @@ display:none
 }
 	.main {
 		width:98%;
+	}
+	.player .main{
 		height: 400px;
 	}
 .top .logo {
