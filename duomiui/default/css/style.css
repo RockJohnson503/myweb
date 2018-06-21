@@ -347,23 +347,33 @@ margin-right:0
 }
 }
 @media (max-width:767px) {
-       #block_abs{
-                display: none;
-                position: absolute;
-                top: 325px;
-                width: 100%;
-                height: 125px;
-                background: black;
-        }
-        .footer{
-                display: none;
-        }
+	#block_abs{
+		display: block;
+		position: absolute;
+		top: 305px;
+		width: 100%;
+		height: 145px;
+		background: black;
+	}
+	#block_absr{
+		display: block;
+		position: absolute;
+		top: 110px;
+		right: 0px;
+		width: 170px;
+		height: 340px;
+		background: black;
+	}
+	.footer{
+			display: none;
+	}
 .channel-focus, .ee, .download-footer, .hitkey, .index-tj-r, .top .nav-qt, .top .search, .top .top-nav, .ylink, .ct-r {
 display:none
 }
-.main {
-width:98%
-}
+	.main {
+		width:98%;
+		height: 400px;
+	}
 .top .logo {
 padding:0
 }
