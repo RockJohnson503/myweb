@@ -353,7 +353,7 @@
 				<label><i class="fa fa-envelope-open"></i>
 					<div>
 						<input name="email" class="mail" placeholder="请输入邮箱" />
-						<span class="error_info"></span>
+						<span class="error_info">{wanshi:err}</span>
 					</div>
 				</label>
 				
@@ -420,7 +420,6 @@
 			// })
 			
 			var mail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-			var pwd=/^[*]{6,16}$/;
 			var mail_val, pwd_val, rpwd_val;
 			
 			var mail_y,pwd_y,rpwd_y=0;
@@ -443,15 +442,9 @@
 			
 			$(".pwd").on('input propertychange',function pwd_fun(){
 			    pwd_val=$(".pwd").val();
-				var rs=pwd.test(pwd_val);
 				if(pwd_val.length>=6 && pwd_val.length<=16 ){
-					if(rs){
-						$(".pwd").next().text("")
-						pwd_y=1;
-					}else{
-						$(".pwd").next().text("密码格式错误")
-						pwd_y=0;
-					}
+					$(".pwd").next().text("")
+					pwd_y=1;
 				}else{
 					$(".pwd").next().text("密码必须是6-16位")
 					pwd_y=0;

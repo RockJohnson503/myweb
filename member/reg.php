@@ -86,5 +86,11 @@ else
 	$t=replaceCurrentTypeId($t,-444);
 	$t=$mainClassObj->parseIf($t);
 	$t=str_replace("{duomicms:member}", front_member(),$t);
+	if($err == 2){
+	    $errinfo = "账号已注册";
+    }elseif($err == 3){
+	    $errinfo = "邮箱已注册";
+    }
+	$t=str_replace("{wanshi:err}", $errinfo, $t);
 	echo $t;
 } 
