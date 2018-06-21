@@ -99,7 +99,7 @@ class Image
 		$ps=split("/",$picUrl);
 		$filename=urldecode($ps[count($ps)-1]);
 		if ($fileext!=""){
-			if(!(strpos($picUrl,".ykimg.com/")>0)){
+			if(!(strpos($picUrl,".ykimg.com/")>0) and !(strpos($picUrl,".qpic.cn/")>0)){
 				if(empty($filename) || strpos($filename,".")==0){
 					return "数据<font color=red>".$vname."</font>的图片路径错误2,请检查图片地址是否有效 ".$spanstr;
 				}
