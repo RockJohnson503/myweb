@@ -4,7 +4,7 @@ var playerw='100%';//电脑端播放器宽度
 var playerh='550';//电脑端播放器高度
 var mplayerw='100%';//手机端播放器宽度
 var mplayerh='400';//手机端播放器高度
-var player_jxurl="http://jx.618g.com/?url=";
+var player_jxurl="http://jx.hanximeng.com/api.php?url=";
 var skinColor='d3e3f3,999999|d1d3a2,3300FF|94d2e2,000000|000000,000000|c9abca,000000';//已无效参数
 var openMenu="2";//已无效参数
 var logoURL="logo.png";//已无效参数
