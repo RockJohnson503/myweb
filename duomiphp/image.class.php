@@ -41,7 +41,11 @@ class Image
 		$isDownOk=false;
 		$picUrl=$pic;
 		$ps=split("/",$picUrl);
-		$filename=$ps[count($ps)-1];
+		$num = 1;
+		if(strpos($picUrl,".qpic.cn/") > 0){
+		    $num = 2;
+        }
+		$filename=$ps[count($ps)-$num];
 		if (strpos(" ".$filename,"?")>0){
 			$filenamet=explode('?',$filename);
 			$filename=$filenamet[0];
@@ -50,7 +54,9 @@ class Image
 		$filename = substr(md5($filename.time()),0,16);
 		if (strpos($picUrl,".ykimg.com/")>0){
 			$fileext=".gif";
-		}
+		}elseif(strpos($picUrl,".qpic.cn/")>0){
+		    $fileext=".jpg";
+        }
 		$picpath = '../'.$cfg_upload_dir.'/allimg/'.MyDate("ymd",time())."/";
 		$picfile = $filename.$fileext;
 		$filePath = $picpath.$picfile;
