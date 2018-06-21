@@ -79,7 +79,7 @@ class Image
 			}else
 			{
 				if(!empty($v_name))
-				echo "数据<font color=red>".$v_name."</font>的图片下载成功,大小为<font color=red>".$isDownOk."</font>KB <a target=_blank href=".$filePath.">预览图片</a><br>";
+				echo "数据<font color=red>".$v_name."</font>的图片下载成功,大小为<font color=red>".$isDownOk."</font>MB <a target=_blank href=".$filePath.">预览图片</a><br>";
 				$filePath=str_replace('../','',$filePath);
 			}
 			return $filePath;
@@ -98,7 +98,7 @@ class Image
 		$fileext=getFileFormat($filePath);
 		$ps=split("/",$picUrl);
 		$filename=urldecode($ps[count($ps)-1]);
-		if ($fileext!="" && strpos("|.jpg|.gif|.png|.bmp|.jpeg|",strtolower($fileext))>0){
+		if ($fileext!=""){
 			if(!(strpos($picUrl,".ykimg.com/")>0)){
 				if(empty($filename) || strpos($filename,".")==0){
 					return "数据<font color=red>".$vname."</font>的图片路径错误2,请检查图片地址是否有效 ".$spanstr;
@@ -108,11 +108,7 @@ class Image
 			$createStreamFileFlag=createStreamFile($imgStream,$filePath);
 			if($createStreamFileFlag){
 				$streamLen=strlen($imgStream);
-				if($streamLen<2048){
-					return "数据<font color=red>".$vname."</font>的图片下载发生错误5,请检查图片地址是否有效  ".$spanstr;
-				}else{
-					return number_format($streamLen/1024,2);
-				}
+                return number_format($streamLen/1024/1024,2);
 			}else{
 				return "数据<font color=red>".$vname."</font>的图片下载发生错误4,请检查图片地址是否有效  ".$spanstr;
 			}
