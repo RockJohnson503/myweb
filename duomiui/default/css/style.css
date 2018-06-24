@@ -675,7 +675,13 @@ width:320px
 	color:#d8d8d8;
 	line-height:50px
 }
-.nav-qt li.bb a {
+.nav-qt li.dd {
+	position:relative;
+	float:left;
+	color:#d8d8d8;
+	line-height:50px;
+}
+.nav-qt li.bb a, .nav-qt li.dd a {
 	display:block;
 	padding:0 10px;
 	color:#d8d8d8
@@ -695,7 +701,7 @@ width:320px
 }
 .nav-qt li.bb strong.ma {
 	float:left;
-	display:blcok;
+	display:block;
 	padding-left:10px;
 	padding-right:10px;
 	font-weight:400;
