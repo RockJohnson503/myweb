@@ -133,7 +133,7 @@ class MainClass_Template
 		$content=str_replace("{duomicms:webewm}",$GLOBALS['cfg_ewm'],$content);
 		$content=str_replace("{duomicms:webnotice}",$GLOBALS['cfg_notice'],$content);
 		$content=str_replace("{duomicms:webtitle}",$GLOBALS['cfg_webtitle'],$content);
-		$content=str_replace("{duomicms:copyright}"," ".date('Y')." <a style='margin-right: 5px;' href='/'>".decodeHtml($GLOBALS['cfg_powerby'])."</a>",$content);
+		$content=str_replace("{duomicms:copyright}","© ".date('Y')." <a style='margin-right: 5px;' href='/'>".decodeHtml($GLOBALS['cfg_powerby'])."</a>",$content);
 		$content=str_replace("{duomicms:des}",decodeHtml($GLOBALS['cfg_description']),$content);
 		$content=str_replace("{duomicms:icp}","<a href='http://www.miitbeian.gov.cn' target='_new'>".stripslashes($GLOBALS['cfg_icpbei'])."</a>",$content);
 		$content=str_replace("{duomicms:tj}",stripslashes($GLOBALS['cfg_sitevisitejs']),$content);
