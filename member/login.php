@@ -47,11 +47,12 @@ if($dopost=='login')
         $_SESSION['duomi_user_group'] = $row1['gid'];
         $ip = GetIP();
         $system = get_system();
+        $userid = $row1['username'];
         $sql = "insert into wanshi_login_info(u_name, l_ip, l_time, l_sys)
                 values('$userid', '$ip', " . time() . ", '$system')";
         $dsql->ExecuteNoneQuery($sql);
 
-        header("Location:/");;
+        header("Location:/");
         exit();
 
     }
