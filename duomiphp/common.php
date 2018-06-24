@@ -181,7 +181,7 @@ if($cronnextrun && $cronnextrun <= $timestamp) {
 
 # 获取来源
 session_start();
-if(!empty($mac)){
+if(isset($mac)){
     $_SESSION['cfg_ac'] = $mac;
 }
 ?>
