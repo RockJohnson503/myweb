@@ -357,13 +357,13 @@
 					</div>
 				</label>
 				
-				<!--<label><i class="fa fa-envelope-open"></i>-->
-					<!--<div>-->
-						<!--<input placeholder="请输入验证码" />-->
-						<!--<span class="error_info"></span>-->
-						<!--<button class="send_code">发送验证码</button>-->
-					<!--</div>-->
-				<!--</label>-->
+				<label><i class="fa fa-envelope-open"></i>
+					<div>
+						<input class="captcha" placeholder="请输入验证码" />
+						<span class="error_info"></span>
+						<button class="send_code">发送验证码</button>
+					</div>
+				</label>
 				
 				<label><i class="fa fa-lock"></i>
 					<div>
@@ -422,7 +422,7 @@
 			var mail=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 			var mail_val, pwd_val, rpwd_val;
 			
-			var mail_y,pwd_y,rpwd_y=0;
+			var mail_y, pwd_y, capt_y, rpwd_y=0;
 			$(".mail").on('input propertychange',function mail_fun(){
 			    mail_val=$(".mail").val();
 				var rs=mail.test(mail_val);
@@ -464,30 +464,71 @@
 			
 			var a=60
 			$('.send_code').click(function(){
-				$(this).css({"background":"#f0f0f0","color":"#666666"})
-				$('.send_code').attr('disabled',"disabled"); //添加disabled属性 
-				var time=setInterval(function(){
-					$('.send_code').text('等待('+a+')秒')
-					a--
-					if (a<0) {
-						clearInterval(time)
-						a=60
-						$('.send_code').text('发送验证码')
-					}
-				},1000)
-				setTimeout(function(){
-					$('.send_code').removeAttr("disabled"); //移除disabled属性 
-					$('.send_code').css({"background":"#00ccff","color":"#fff"})
-				},a*1000)
+                if(mail_y == 1){
+                    $.ajax({
+                        type: "post",
+                        url: "/{duomicms:webpath}duomiphp/ajax.php?action=checkreg",
+                        data: {
+                            'email': $(".mail").val()
+                        },
+                        success: function (data) {
+                            $(".captcha").next().text(data);
+                        }
+                    });
+
+                    $(".captcha").on('input propertychange', function (event) {
+                        if ($(".captcha").val().length < 6) {
+                            $(".captcha").next().text("请输入六位验证码");
+                        }else {
+                            $.ajax({
+                                type: "post",
+                                url: "/{duomicms:webpath}duomiphp/ajax.php?action=checkcaptcha",
+                                data: {
+                                    'param': $(".captcha").val()
+                                },
+                                success: function (data) {
+                                    if (data == 1){
+                                        $(".captcha").next().text("验证码错误");
+                                    }else {
+                                        capt_y = 1;
+                                        $(".captcha").next().text("");
+                                    }
+                                }
+                            })
+                        }
+                    });
+
+                    // 设置样式
+                    $(this).css({"background":"#f0f0f0","color":"#666666"})
+                    $('.send_code').attr('disabled',"disabled"); //添加disabled属性
+                    var time=setInterval(function(){
+                        $('.send_code').text('等待('+a+')秒')
+                        a--
+                        if (a<0) {
+                            clearInterval(time)
+                            a=60
+                            $('.send_code').text('再次发送')
+                        }
+                    },1000);
+
+                    setTimeout(function(){
+                        $('.send_code').removeAttr("disabled"); //移除disabled属性
+                        $('.send_code').css({"background":"#00ccff","color":"#fff"})
+                    },a*1000)
+				}else{
+                    $('.mail').next().text('不输入怎么注册啊!');
+				}
 			})
 			
 			
 			function yanzheng(){
-				if(mail_y+pwd_y+rpwd_y==3){
+				if(mail_y + pwd_y + rpwd_y + capt_y == 4){
 					return true;
 				}else if(mail_val == null){
 					$('.mail').next().text('不输入怎么注册啊!');
-				}else if(pwd_val == null){
+				}else if($(".captcha").val() == ""){
+                    $(".captcha").next().text('不输入怎么注册啊!');
+                }else if(pwd_val == null){
 				    $('.pwd').next().text('不输入怎么注册啊!');
 				}else if(rpwd_val == null){
 				    $('.r_pwd').next().text('不输入怎么注册啊!');
