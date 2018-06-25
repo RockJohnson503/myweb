@@ -4,14 +4,8 @@
     <ul class="top-nav">
       <li><a class="now" href="{duomicms:indexlink}">首页</a></li>
       {duomicms:menulist type=top}
-      {if:[menulist:typeid]>5}
-      <li><a href="[menulist:link]"{subif:"{duomicms:currenttypeid}"=="[menulist:typeid]"} class="on"{end subif}>[menulist:typename]</a></li>
-      {else}
-      <li class="" _t_nav="topnav-[menulist:i]"><a href="[menulist:link]"{subif:"{duomicms:currenttypeid}"=="[menulist:typeid]"} class="on"{end subif}>[menulist:typename]<i class="sjbgs"></i><i class="sjbgx"></i></a></li>
-      {end if}
+      <li><a href="[menulist:link]">[menulist:typename]</a></li>
       {/duomicms:menulist}
-      <li><a href="{duomicms:topiclink}">专题</a></li>
-      <!--li class="" _t_nav="topnav-news"><a href="{duomicms:newslink}">新闻<i class="sjbgs"></i><i class="sjbgx"></i></a></li-->
       <li><a href="/{duomicms:webpath}interface/gbook.php">留言</a></li>
     </ul>
     <ul class="search so">
@@ -71,8 +65,6 @@
     {duomicms:menulist type=all}    
       <li><a href="[menulist:link]"{if:"{duomicms:currenttypeid}"=="[menulist:typeid]"} class="on"{end if}>[menulist:typename]</a></li>
     {/duomicms:menulist}
-      <li><a href="{duomicms:topiclink}">专题</a></li>
-      <li><a href="{duomicms:newslink}">新闻</a></li>
       <li><a href="/{duomicms:webpath}interface/gbook.php">留言</a></li>
     </ul>
     </div>
