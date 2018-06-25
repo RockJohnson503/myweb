@@ -16,13 +16,6 @@ if($dopost=='reg')
 
     $validate = empty($validate) ? '' : strtolower(trim($validate));
 
-    if(($validate=='' || $validate != $svali) and $_SESSION['cfg_ac'] != "app")
-    {
-        ResetVdValue();
-        ShowMsg('验证码不正确!','reg.php');
-        exit();
-    }
-
     if(trim($m_pwd)<>trim($m_pwd2) || trim($m_pwd)=='')
     {
         header("Location:reg.php?err=1");
@@ -68,10 +61,7 @@ if($dopost=='reg')
 }
 else
 {
-    $tempfile = duomi_ROOT."/member/html/reg.html";
-    if($_SESSION['cfg_ac'] == "app"){
-        $tempfile = duomi_ROOT."/member/html/wanshi_reg.html";
-    }
+    $tempfile = duomi_ROOT."/member/html/wanshi_reg.html";
 	$content=loadFile($tempfile);
 	$t=$content;
 	$t=$mainClassObj->parseTopAndFoot($t);
