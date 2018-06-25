@@ -20,12 +20,6 @@ $svali = $_SESSION['duomi_ckstr'];
 if($dopost=='login')
 {
 	$validate = empty($validate) ? '' : strtolower(trim($validate));
-	if(($validate=='' || $validate != $svali) and $_SESSION['cfg_ac'] != "app")
-	{
-		ResetVdValue();
-		ShowMsg('验证码不正确!','login.php');
-		exit();
-	}
 	if($userid=='')
 	{
 		ShowMsg('请输入用户名!','login.php');
@@ -68,10 +62,7 @@ if($dopost=='login')
 }
 else
 {
-    $tempfile = duomi_ROOT."/member/html/login.html";
-    if($_SESSION['cfg_ac'] == "app"){
-        $tempfile = duomi_ROOT."/member/html/wanshi_login.html";
-    }
+    $tempfile = duomi_ROOT."/member/html/wanshi_login.html";
 	$content=loadFile($tempfile);
 	$t=$content;
 	$t=$mainClassObj->parseTopAndFoot($t);
