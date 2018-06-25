@@ -417,7 +417,8 @@
 					}
 					
 					if($(window).innerWidth()<=720){
-						config.count=70;
+						config.count=50;
+						$('.main').innerHeight($(window).innerHeight())
 					}else if($(window).innerWidth()>1366){
 						config.count=500;
 					}
