@@ -384,7 +384,6 @@
 		<div id="mydiv"></div>
 		<script>
 			$(function(){
-				
 				//配置
 				var config = {
 					vx: 4,	//小球x轴速度,正为右，负为左
@@ -401,18 +400,15 @@
 				}
 				
 				if($(window).innerWidth()<=720){
-					config.count=70;
+					config.count=50;
+					$('.main').innerHeight($(window).innerHeight())
 				}else if($(window).innerWidth()>1366){
 					config.count=500;
 				}
 				//调用
 				CanvasParticle(config);
 			})
-			
-			//每次刷新清空文本框中的值
-			$(function(){
-				$('input').val("")
-			})
+
 			
 			// $("label:first-of-type").change(function(){
 			// 	alert($(this).children("input").val())
