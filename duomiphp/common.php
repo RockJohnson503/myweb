@@ -196,6 +196,6 @@ if($res and !$_SESSION["duomi_user_id"]){
     $_SESSION['duomi_nick_name'] = substr($arr[2], strpos($arr[2], ":") + 1);
     $_SESSION['duomi_user_group'] = substr($arr[3], strpos($arr[3], ":") + 1);
     $_SESSION['cfg_ac'] = substr($arr[4], strpos($arr[4], ":") + 1);
-    $dsql->ExecuteNoneQuery("update wanshi_session set sess_time = ". time());
+    $dsql->ExecuteNoneQuery("update wanshi_session set sess_time = ". time() . " where sess_id = '$sessid'");
 }
 ?>
