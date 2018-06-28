@@ -184,4 +184,18 @@ session_start();
 if(isset($mac)){
     $_SESSION['cfg_ac'] = $mac;
 }
+
+# 检查session是否掰掉了
+$sessid = $_COOKIE["PHPSESSID"];
+$res = $dsql->GetOne("select * from wanshi_session where sess_id = '$sessid'");
+if($res and !$_SESSION["duomi_user_id"]){
+    $data = $res["sess_data"];
+    $arr = explode(";", $data);
+    $_SESSION['duomi_user_id'] = substr($arr[0], strpos($arr[0], ":") + 1);
+    $_SESSION['duomi_user_name'] = substr($arr[1], strpos($arr[1], ":") + 1);
+    $_SESSION['duomi_nick_name'] = substr($arr[2], strpos($arr[2], ":") + 1);
+    $_SESSION['duomi_user_group'] = substr($arr[3], strpos($arr[3], ":") + 1);
+    $_SESSION['cfg_ac'] = substr($arr[4], strpos($arr[4], ":") + 1);
+    $dsql->ExecuteNoneQuery("update wanshi_session set sess_time = ". time());
+}
 ?>
