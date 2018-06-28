@@ -342,13 +342,39 @@ function video_diy(){
 	//----------------播放器导航----------------------
 	var header1 = "<a href=\"javascript:void()\" onclick=\"return parent.video_jump(-1)\">上一集</a><a href=\"javascript:void()\" onclick=\"return parent.video_jump(1)\">下一集</a>";
 	var header3 = "<a href=\"javascript:void(0)\" onClick=\"parent.video_opens(this);\">开启/关闭列表</a><a href=\"javascript:void()\" onclick=\"return parent.video_jump(1)\">下一集</a>";
+	var origin = "<span>切换解析源: </span>\n" +
+        "    <select onchange='return origin_change(this.value)' id=\"origin\">\n" +
+		"        <option value=\"default\">智能解析</option>\n" +
+        "        <option value=\"1\">源: 52</option>\n" +
+        "        <option value=\"2\">源: 思古</option>\n" +
+        "        <option value=\"3\">源: 六六</option>\n" +
+        "        <option value=\"4\">源: 27盘</option>\n" +
+        "        <option value=\"5\">源: 乐博</option>\n" +
+        "        <option value=\"6\">源: 减肥</option>\n" +
+        "        <option value=\"7\">源: 盘古</option>\n" +
+        "        <option value=\"8\">源: 战狼</option>\n" +
+        "        <option value=\"9\">源: 久看</option>\n" +
+		"        <option value=\"10\">源: 618G</option>\n" +
+        "        <option value=\"11\">源: 百域阁</option>\n" +
+        "        <option value=\"12\">源: 寒曦朦</option>\n" +
+        "        <option value=\"13\">源: 新崛起</option>\n" +
+		"        <option value=\"14\">源: 206电影</option>\n" +
+        "        <option value=\"15\">源: 乐趣女孩</option>\n" +
+        "        <option value=\"16\">源: 旋风速播</option>\n" +
+        "        <option value=\"17\">源: 迷失之途</option>\n" +
+        "        <option value=\"18\">源: 七彩云端</option>\n" +
+        "    </select>" +
+		"<script>$(function (){$(\"#play_origin span\").on(\"click\", function () {\n" +
+        "        console.log(1);\n" +
+        "    }));</script>";
 		
 	iframe.document.body.style.margin = 0;
 	iframe.document.getElementById('video_menu').style.height = (parseInt(playerh,10) - 34)+'px';
 	iframe.document.getElementById('video_menu').innerHTML = video_html;
 	iframe.document.getElementById('header1').innerHTML = header1;
 	iframe.document.getElementById('header3').innerHTML = header3;
-	
+	iframe.document.getElementById('play_origin').innerHTML = origin;
+
 	//P显示与隐藏
 	var video_li = iframe.document.getElementById('video_menu').getElementsByTagName('p');
 	for(var j= 0;j<video_li.length;j++){
@@ -365,6 +391,7 @@ function video_diy(){
 	video_title();	
 	tmp_1 = tmp_2 = tmp_3 = null;
 };
+
 
 //-------------
 
@@ -449,6 +476,15 @@ else{
 prePage=ss;
 }
 
+function abs(status) {
+	if($("#block_absb").css("height") != "0px"){
+		if(status == -1){
+			$("#block_absb").css({"top": "380px", "height": "70px"});
+		}else{
+			$("#block_absb").css({"top": "", "height": ""});
+		}
+	}
+}
 
 
 

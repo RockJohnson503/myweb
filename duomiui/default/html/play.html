@@ -14,11 +14,18 @@
 <script>var playn='{playpage:name}', playp='{playpage:part}';</script>
 </head>
 <body>
-<div id="block_abs"></div>
-<div id="block_absr"></div>
 {duomicms:head}
 	<h1 class="title" style="display:none">{playpage:textlink}</h1>
-	<div class="player mb"><div class="main">{playpage:playurlinfo}{playpage:player}</div></div>
+	<div class="player mb"><div class="main">
+        <div id="block_abst">
+            1.部分视频有类字幕小广告,请各位用户忽略即可.<br>
+            2.若视频长时间黑屏,清晰度不够,解析失败或解析时间只有6分钟,可点击上方切换解析源.
+        </div>
+        <div id="block_absl"></div>
+        <div id="block_absb"></div>
+        <div id="block_absr"></div>
+        {playpage:playurlinfo}{playpage:player}
+    </div></div>
     <div class="main">
 	<div class="ding mb clearfix">{playpage:digg}</div>
 	<div class="tab-title mb clearfix">

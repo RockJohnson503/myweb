@@ -47,9 +47,9 @@ onload=initAd;
 </script>
 </head>
 <body>
-<div id="sponsorAdDiv" style="visibility:hidden; z-index:999; height:105%; width:100%;">
-<iframe id="zzzif" name="zzzif" src="" scrolling="no" frameborder="0"></iframe>
-</div>
+<!--<div id="sponsorAdDiv" style="visibility:hidden; z-index:999; height:105%; width:100%;">-->
+<!--<iframe id="zzzif" name="zzzif" src="" scrolling="no" frameborder="0"></iframe>-->
+<!--</div>-->
 
 <div id="play_header">
     <div id="header3"></div>
@@ -57,10 +57,39 @@ onload=initAd;
     <div id="header2"></div>
 </div>
 
+<div id="play_origin"></div>
+
 <div id="play_box">
 <div id="player"></div>
     <div id="video_menu"></div>
 </div>
+<script src="../../member/js/jquery-1.12.3.min.js"></script>
+<script>
+    var jx, jxcss;
+    var url = parent.now;
+    var origins = ["http://www.52jiexi.com/tong.php?url=", "http://api.bbbbbb.me/vip/?url=", "http://qtv.soshane.com/ko.php?url=",
+                    "http://110cctv.com/vip.php?url=", "http://www.luwayo.com/vip/?url=", "http://api.91exp.com/svip/?url=",
+                    "https://api.pangujiexi.com/player.php?url=", "http://api.zlflv.com/?url=", "http://jx.9kyy.com/vip/?url=",
+                    "http://jx.618g.com/?url=", "http://yun.baiyug.cn/vip/index.php?url=", "http://jx.hanximeng.com/vip.php?url=",
+                    "https://vip.xinjueqio.cn/odflv/?url=", "http://206dy.com/fen/qq.php?url=", "http://api.lequgirl.com/?url=",
+                    "http://api.xfsub.com/index.php?url=", "http://y.mt2t.com/lines?url=", "http://7cyd.com/vip/?url="];
+    function origin_change(element){
+        if(element == "default"){
+            jx = parent.player_jxurl;
+            jxcss = {"position": "", "top": ""};
+        }else{
+            jx = origins[element - 1];
+            jxcss = {"position": "relative", "top": "0"};
+        }
+        if(element == 2){
+            parent.abs(-1);
+        }else{
+            parent.abs(1);
+        }
+        $("#player iframe").attr("src", jx+url);
+        $("#play_origin").css(jxcss);
+    }
+</script>
 <script>
 parent.video_diy();
 var playerh=parent.playerh-33;

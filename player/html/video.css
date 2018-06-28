@@ -39,6 +39,32 @@ background-color:#444;
 -moz-border-radius: 2em;
 border-radius:2em;
 }
+#play_origin{
+    position: absolute;
+    top: 34px;
+    width: 100%;
+    height: 26px;
+    background: #1c1c1c;
+    color: white;
+}
+#play_origin select{
+    height: 24px;
+    color: white;
+    background: transparent;
+    border-radius: 10px;
+    border: 1px white solid;
+    padding-left: 5px;
+    outline: 0;
+}
+#play_origin select:active{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 0;
+}
+#play_origin select option{
+    color: black;
+    outline: 0;
+}
 
 /* 媒体查询 */
 @media screen and (max-width: 750px) {

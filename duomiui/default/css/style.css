@@ -346,19 +346,43 @@ width:15%
 margin-right:0
 }
 }
+
+#block_abst{
+	display: block;
+	position: absolute;
+	top: 109px;
+	width: 1200px;
+	height: 205px;
+	background: black;
+	z-index: 1;
+}
+
 @media (max-width:767px) {
-	#block_abs{
+	#block_abst{
+		width: 99%;
+        height: 145px;
+	}
+	#block_absb{
 		display: block;
 		position: absolute;
 		top: 305px;
-		width: 100%;
+		width: 99%;
 		height: 145px;
+		background: black;
+	}
+	#block_absl{
+		display: block;
+		position: absolute;
+		top: 109px;
+		left: 0px;
+		width: 170px;
+		height: 340px;
 		background: black;
 	}
 	#block_absr{
 		display: block;
 		position: absolute;
-		top: 110px;
+		top: 109px;
 		right: 0px;
 		width: 170px;
 		height: 340px;
