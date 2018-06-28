@@ -45,6 +45,12 @@ if($dopost=='login')
         $sql = "insert into wanshi_login_info(u_name, l_ip, l_time, l_sys)
                 values('$userid', '$ip', " . time() . ", '$system')";
         $dsql->ExecuteNoneQuery($sql);
+        if($_SESSION["cfg_ac"] == "app" or $_SESSION["cfg_ac"] == "wx"){
+            $sessid = $_COOKIE["PHPSESSID"];
+            $sessdata = "u_id:".$row1["id"].";u_name:".$row1["username"].";n_name:".$row1["nickname"].";g_id:".$row1["gid"].";c_ac:".$_SESSION["cfg_ac"];
+            $dsql->ExecuteNoneQuery("insert into wanshi_session(sess_id, sess_data, sess_time)
+                                          values('$sessid', '$sessdata', ". time() .")");
+        }
 
         header("Location:/");
         exit();

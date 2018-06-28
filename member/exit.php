@@ -1,10 +1,12 @@
 <?php
 session_start();
 require_once("../duomiphp/common.php");
-unset($_SESSION['duomi_user_id']);
-unset($_SESSION['duomi_user_name']);
-unset($_SESSION['duomi_user_group']);
-unset($_SESSION['duomi_nick_name']);
+$mac = $_SESSION["cfg_ac"];
+$res = $dsql->ExecuteNoneQuery2("delete from wanshi_session where sess_id = '". $_COOKIE["PHPSESSID"] ."'");
+session_destroy();
 //生成同步退出的代码
-header("Location:/member/login.php");
+if($mac){
+    $mac = "?mac=".$mac;
+}
+header("Location:/".$mac);
 ?>
