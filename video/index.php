@@ -245,8 +245,8 @@ function echoPlay($vId)
 	$content = str_replace("{playpage:textlink}",$typeText."&nbsp;&nbsp;&raquo;&nbsp;&nbsp;<a href='".$contentLink2."'>".$row['v_name']."</a>",$content);
 	$playerwidth = 1;
 	$playerheight = 1;
-	if($cfg_runmode==2) $content = str_replace("{playpage:player}","<script>var paras=getHtmlParas('".getfileSuffix()."');_lOlOl10l(paras[2],paras[1])</script><iframe id='cciframe' scrolling='no' frameborder='0' allowfullscreen></iframe>",$content);
-	else $content = str_replace("{playpage:player}","<script>var paras=getAspParas('".getfileSuffix()."');_lOlOl10l(paras[2],paras[1])</script><iframe id='cciframe' scrolling='no' frameborder='0' allowfullscreen></iframe>",$content);
+	if($cfg_runmode==2) $content = str_replace("{playpage:player}","<script>var paras=getHtmlParas('".getfileSuffix()."');_lOlOl10l(paras[2],paras[1])</script><iframe id='cciframe' scrolling='no' frameborder='0' allowfullscreen='true' allowtransparency='true'></iframe>",$content);
+	else $content = str_replace("{playpage:player}","<script>var paras=getAspParas('".getfileSuffix()."');_lOlOl10l(paras[2],paras[1])</script><iframe id='cciframe' scrolling='no' frameborder='0' allowfullscreen='true' allowtransparency='true'></iframe>",$content);
 	$content=$mainClassObj->parseIf($content);
 	$content=str_replace("{duomicms:member}",front_member(),$content);
 	echo str_replace("{duomicms:runinfo}",getRunTime($t1),$content) ;
