@@ -365,7 +365,7 @@ margin-right:0
 	#block_absb{
 		display: block;
 		position: absolute;
-		top: 305px;
+		top: 304px;
 		width: 99%;
 		height: 145px;
 		background: black;
@@ -373,19 +373,19 @@ margin-right:0
 	#block_absl{
 		display: block;
 		position: absolute;
-		top: 109px;
-		left: 0px;
+		top: 254px;
+		left: 4px;
 		width: 170px;
-		height: 340px;
+		height: 180px;
 		background: black;
 	}
 	#block_absr{
 		display: block;
 		position: absolute;
-		top: 109px;
+		top: 254px;
 		right: 0px;
 		width: 170px;
-		height: 340px;
+		height: 180px;
 		background: black;
 	}
 	.footer{

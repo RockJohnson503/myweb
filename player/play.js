@@ -479,7 +479,7 @@ prePage=ss;
 function abs(status) {
 	if($("#block_absb").css("height") != "0px"){
 		if(status == -1){
-			$("#block_absb").css({"top": "380px", "height": "70px"});
+			$("#block_absb").css({"top": "379px", "height": "70px"});
 		}else{
 			$("#block_absb").css({"top": "", "height": ""});
 		}
