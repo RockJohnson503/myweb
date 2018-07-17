@@ -67,12 +67,7 @@ onload=initAd;
 <script>
     var jx, jxcss;
     var url = parent.now;
-    var origins = ["http://www.52jiexi.com/tong.php?url=", "http://api.bbbbbb.me/vip/?url=", "http://qtv.soshane.com/ko.php?url=",
-                    "http://110cctv.com/vip.php?url=", "http://www.luwayo.com/vip/?url=", "http://api.91exp.com/svip/?url=",
-                    "https://api.pangujiexi.com/player.php?url=", "http://api.zlflv.com/?url=", "http://jx.9kyy.com/vip/?url=",
-                    "http://jx.618g.com/?url=", "http://yun.baiyug.cn/vip/index.php?url=", "http://jx.hanximeng.com/vip.php?url=",
-                    "https://vip.xinjueqio.cn/odflv/?url=", "http://206dy.com/fen/qq.php?url=", "http://api.lequgirl.com/?url=",
-                    "http://api.xfsub.com/index.php?url=", "http://y.mt2t.com/lines?url=", "http://7cyd.com/vip/?url="];
+    var origins = parent.origins;
     function origin_change(element){
         if(element == "default"){
             jx = parent.player_jxurl;
@@ -80,11 +75,6 @@ onload=initAd;
         }else{
             jx = origins[element - 1];
             jxcss = {"position": "relative", "top": "0"};
-        }
-        if(element == 2){
-            parent.abs(-1);
-        }else{
-            parent.abs(1);
         }
         $("#player iframe").attr("src", jx+url);
         $("#play_origin").css(jxcss);

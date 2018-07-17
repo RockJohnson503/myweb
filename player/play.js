@@ -5,6 +5,8 @@ var playerh='550';//电脑端播放器高度
 var mplayerw='100%';//手机端播放器宽度
 var mplayerh='400';//手机端播放器高度
 var player_jxurl="http://jx.hanximeng.com/api.php?url=";
+var origins=['http://www.52jiexi.com/tong.php?url=','http://api.bbbbbb.me/vip/?url=','http://qtv.soshane.com/ko.php?url=','http://110cctv.com/vip.php?url=', 'http://www.luwayo.com/vip/?url=', 'http://api.91exp.com/svip/?url=','https://api.pangujiexi.com/player.php?url=', 'http://api.zlflv.com/?url=', 'http://jx.9kyy.com/vip/?url=','http://jx.618g.com/?url=', 'http://yun.baiyug.cn/vip/index.php?url=', 'http://jx.hanximeng.com/vip.php?url=','https://vip.xinjueqio.cn/odflv/?url=', 'http://206dy.com/fen/qq.php?url=', 'http://api.lequgirl.com/?url=','http://api.xfsub.com/index.php?url=', 'http://y.mt2t.com/lines?url=', 'http://7cyd.com/vip/?url='];
+var o_name=['源: 52', '推: 思古', '源: 六六', '源: 27盘', '源: 乐博', '源: 减肥', '源: 盘古', '源: 战狼', '源: 久看', '推: 618G','推: 百域阁', '源: 寒曦朦', '源: 新崛起', '源: 206电影', '推: 乐趣女孩', '源: 旋风速播', '源: 迷失之途', '源: 七彩云端'];
 var skinColor='d3e3f3,999999|d1d3a2,3300FF|94d2e2,000000|000000,000000|c9abca,000000';//已无效参数
 var openMenu="2";//已无效参数
 var logoURL="logo.png";//已无效参数
@@ -344,29 +346,29 @@ function video_diy(){
 	var header3 = "<a href=\"javascript:void(0)\" onClick=\"parent.video_opens(this);\">开启/关闭列表</a><a href=\"javascript:void()\" onclick=\"return parent.video_jump(1)\">下一集</a>";
 	var origin = "<span>切换解析源: </span>\n" +
         "    <select onchange='return origin_change(this.value)' id=\"origin\">\n" +
-		"        <option value=\"default\">智能解析</option>\n" +
-        "        <option value=\"1\">源: 52</option>\n" +
-        "        <option value=\"2\">源: 思古</option>\n" +
-        "        <option value=\"3\">源: 六六</option>\n" +
-        "        <option value=\"4\">源: 27盘</option>\n" +
-        "        <option value=\"5\">源: 乐博</option>\n" +
-        "        <option value=\"6\">源: 减肥</option>\n" +
-        "        <option value=\"7\">源: 盘古</option>\n" +
-        "        <option value=\"8\">源: 战狼</option>\n" +
-        "        <option value=\"9\">源: 久看</option>\n" +
-		"        <option value=\"10\">源: 618G</option>\n" +
-        "        <option value=\"11\">源: 百域阁</option>\n" +
-        "        <option value=\"12\">源: 寒曦朦</option>\n" +
-        "        <option value=\"13\">源: 新崛起</option>\n" +
-		"        <option value=\"14\">源: 206电影</option>\n" +
-        "        <option value=\"15\">源: 乐趣女孩</option>\n" +
-        "        <option value=\"16\">源: 旋风速播</option>\n" +
-        "        <option value=\"17\">源: 迷失之途</option>\n" +
-        "        <option value=\"18\">源: 七彩云端</option>\n" +
-        "    </select>" +
-		"<script>$(function (){$(\"#play_origin span\").on(\"click\", function () {\n" +
-        "        console.log(1);\n" +
-        "    }));</script>";
+		"        <option value=\"default\">智能解析</option>\n";
+	for(var i = 0; i < origins.length; i++){
+		origin += "<option value=\"" + i+1 + "\">"  + o_name[i] + "</option>"
+	}
+        // "        <option value=\"1\">源: 52</option>\n" +
+        // "        <option value=\"2\">推: 思古</option>\n" +
+        // "        <option value=\"3\">源: 六六</option>\n" +
+        // "        <option value=\"4\">源: 27盘</option>\n" +
+        // "        <option value=\"5\">源: 乐博</option>\n" +
+        // "        <option value=\"6\">源: 减肥</option>\n" +
+        // "        <option value=\"7\">源: 盘古</option>\n" +
+        // "        <option value=\"8\">源: 战狼</option>\n" +
+        // "        <option value=\"9\">源: 久看</option>\n" +
+        // "        <option value=\"10\">推: 618G</option>\n" +
+        // "        <option value=\"11\">推: 百域阁</option>\n" +
+        // "        <option value=\"12\">源: 寒曦朦</option>\n" +
+        // "        <option value=\"13\">源: 新崛起</option>\n" +
+        // "        <option value=\"14\">源: 206电影</option>\n" +
+        // "        <option value=\"15\">推: 乐趣女孩</option>\n" +
+        // "        <option value=\"16\">源: 旋风速播</option>\n" +
+        // "        <option value=\"17\">源: 迷失之途</option>\n" +
+        // "        <option value=\"18\">源: 七彩云端</option>\n" +
+	origin += "</select>";
 		
 	iframe.document.body.style.margin = 0;
 	iframe.document.getElementById('video_menu').style.height = (parseInt(playerh,10) - 34)+'px';
@@ -475,20 +477,6 @@ if(sssss==0){prePage=='';}
 else{
 prePage=ss;
 }
-
-function abs(status) {
-	if($("#block_absb").css("height") != "0px"){
-		if(status == -1){
-			$("#block_absb").css({"top": "379px", "height": "70px"});
-		}else{
-			$("#block_absb").css({"top": "", "height": ""});
-		}
-	}
-}
-
-
-
-
 
 /*function killerrors() { return true; } 
 window.onerror = killerrors; */

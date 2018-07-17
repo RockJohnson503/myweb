@@ -26,11 +26,18 @@ if($ac=='list')
 	}
 	$wheresql = rtrim($wheresql,'and');
 
+    if($vid != "")
+	{
+		$wheresql = "where";
+        $wheresql .= " v_id = '$vid'";
+	}
+	$wheresql = rtrim($wheresql,'and');
+
     if($vname != "")
 	{
 		$wheresql = "where";
-        $v_id = str_replace('*','%',$vname);
-        $wheresql .= " p_info like '%$v_id%'";
+        $vname = str_replace('*','%',$vname);
+        $wheresql .= " p_info like '%$vname%'";
 	}
 	$wheresql = rtrim($wheresql,'and');
 
