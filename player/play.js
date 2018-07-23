@@ -347,9 +347,14 @@ function video_diy(){
 	var origin = "<span>切换解析源: </span>\n" +
         "    <select onchange='return origin_change(this.value)' id=\"origin\">\n" +
 		"        <option value=\"default\">智能解析</option>\n";
+	var og = $MH.getCookie("og");
 
 	for(var i = 0; i < origins.length; i++){
-		origin += "<option value=\"" + i + "\">"  + o_name[i] + "</option>"
+		var st = "";
+		if(i == parseInt(og)){
+			st = "selected";
+		}
+		origin += "<option " + st + " value=\"" + i + "\">"  + o_name[i] + "</option>"
 	}
 
 	origin += "</select>";
@@ -374,6 +379,7 @@ function video_diy(){
 			this.parentNode.getElementsByTagName('dl')[0].style.display = 'block';
 		};
 	}
+
 	video_title();	
 	tmp_1 = tmp_2 = tmp_3 = null;
 };

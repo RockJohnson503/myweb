@@ -63,6 +63,7 @@ onload=initAd;
 <div id="player"></div>
     <div id="video_menu"></div>
 </div>
+<script src="../../duomiui/default/js/history.js"></script>
 <script src="../../member/js/jquery-1.12.3.min.js"></script>
 <script>
     var jx, jxcss;
@@ -78,6 +79,12 @@ onload=initAd;
         }
         $("#player iframe").attr("src", jx+url);
         $("#play_origin").css(jxcss);
+        $MH.setCookie("og", element);
+    }
+
+    var og = $MH.getCookie("og");
+    if(og != null && og != "default"){
+        $("#play_origin").css({"position": "relative", "top": "0"});
     }
 </script>
 <script>
@@ -85,6 +92,10 @@ parent.video_diy();
 var playerh=parent.playerh-33;
 var jx=parent.player_jxurl;
 var url = parent.now;
+
+if(og != null && og != "default"){
+    jx = parent.origins[parseInt(og)];
+}
 document.getElementById('player').innerHTML  = '<iframe border="0" src="'+jx+url+'" width="100%" height="'+playerh+'" marginwidth="0" framespacing="0" marginheight="0" frameborder="0" scrolling="no" vspale="0" noresize=""></iframe>';
 </script> 
 </body>
