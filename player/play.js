@@ -347,27 +347,11 @@ function video_diy(){
 	var origin = "<span>切换解析源: </span>\n" +
         "    <select onchange='return origin_change(this.value)' id=\"origin\">\n" +
 		"        <option value=\"default\">智能解析</option>\n";
+
 	for(var i = 0; i < origins.length; i++){
-		origin += "<option value=\"" + i+1 + "\">"  + o_name[i] + "</option>"
+		origin += "<option value=\"" + i + "\">"  + o_name[i] + "</option>"
 	}
-        // "        <option value=\"1\">源: 52</option>\n" +
-        // "        <option value=\"2\">推: 思古</option>\n" +
-        // "        <option value=\"3\">源: 六六</option>\n" +
-        // "        <option value=\"4\">源: 27盘</option>\n" +
-        // "        <option value=\"5\">源: 乐博</option>\n" +
-        // "        <option value=\"6\">源: 减肥</option>\n" +
-        // "        <option value=\"7\">源: 盘古</option>\n" +
-        // "        <option value=\"8\">源: 战狼</option>\n" +
-        // "        <option value=\"9\">源: 久看</option>\n" +
-        // "        <option value=\"10\">推: 618G</option>\n" +
-        // "        <option value=\"11\">推: 百域阁</option>\n" +
-        // "        <option value=\"12\">源: 寒曦朦</option>\n" +
-        // "        <option value=\"13\">源: 新崛起</option>\n" +
-        // "        <option value=\"14\">源: 206电影</option>\n" +
-        // "        <option value=\"15\">推: 乐趣女孩</option>\n" +
-        // "        <option value=\"16\">源: 旋风速播</option>\n" +
-        // "        <option value=\"17\">源: 迷失之途</option>\n" +
-        // "        <option value=\"18\">源: 七彩云端</option>\n" +
+
 	origin += "</select>";
 		
 	iframe.document.body.style.margin = 0;

@@ -73,7 +73,7 @@ onload=initAd;
             jx = parent.player_jxurl;
             jxcss = {"position": "", "top": ""};
         }else{
-            jx = origins[element - 1];
+            jx = origins[element];
             jxcss = {"position": "relative", "top": "0"};
         }
         $("#player iframe").attr("src", jx+url);
