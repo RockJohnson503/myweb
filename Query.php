@@ -3,7 +3,6 @@
 namespace app\common\server;
 
 use think\Db;
-use think\helper\Str;
 
 // 查询一对多的数据
 class Query
